@@ -19,8 +19,8 @@ This frontend powers the user-facing micro-site for **Really Addictive Drinks**.
 
 ### 1. Clone the repository
 ```
-git clone https://github.com/reallyAD/microSite.git
-cd microSite
+git clone https://github.com/reallyAD/microSite-frontend.git
+cd microSite-frontend
 ```
 
 ### 2. Install dependencies

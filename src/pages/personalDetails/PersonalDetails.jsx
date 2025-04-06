@@ -4,6 +4,7 @@ import BackButton from '../../components/BackButton';
 import TextField from '@mui/material/TextField';
 import CircularArrowButton from '../../components/CircularArrowButton';
 import { useGoTo } from '../../utils/useGoTo';
+import { Diversity2TwoTone } from '@mui/icons-material';
 
 function PersonalDetails() {
 
@@ -20,7 +21,7 @@ function PersonalDetails() {
         <div className="h-screen text-3xl flex justify-center items-center">
             <div className="flex-col">
                 <h1 className="font-bold">What is your name?</h1>
-                <p className="text-lg">Every drink starts with a name</p>
+                <p className="text">Every drink starts with a name</p>
                 <div className="flex flex-row items-center gap-2"> 
                     <TextField 
                         sx={{

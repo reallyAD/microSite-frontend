@@ -9,24 +9,27 @@ import FlavourProfile from './pages/flavourProfile/FlavourProfile';
 import DrinkResultConfirmation from './pages/drinkResultConfirmation/DrinkResultConfirmation';
 import DrinkResultLabel from './pages/drinkResultLabel/DrinkResultLabel';
 import DrinkResult from './pages/drinkResult/DrinkResult';
+import Layout from './components/Layout';
 
 
 function App() {
   return (
     <DrinksProvider>
        <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Navigate to="/home" />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="*" element={<Navigate to="/home" />} />
-          <Route path="/personal-details" element={<PersonalDetails />} />
-          <Route path="/drink-purpose" element={<DrinkPurpose />} />
-          <Route path="/drink-base" element={<DrinkBase />} />
-          <Route path="/flavour-profile" element={<FlavourProfile />} />
-          <Route path="/drink-result-confirmation" element={<DrinkResultConfirmation />} />
-          <Route path="/drink-result-label" element={<DrinkResultLabel />}></Route>
-          <Route path="/drink-result" element={<DrinkResult />} />
-        </Routes>
+          <Layout>
+            <Routes>
+              <Route path="/" element={<Navigate to="/home" />} />
+              <Route path="/drink-result" element={<DrinkResult />} />
+              <Route path="/home" element={<Home />} />
+              <Route path="*" element={<Navigate to="/home" />} />
+              <Route path="/personal-details" element={<PersonalDetails />} />
+              <Route path="/drink-purpose" element={<DrinkPurpose />} />
+              <Route path="/drink-base" element={<DrinkBase />} />
+              <Route path="/flavour-profile" element={<FlavourProfile />} />
+              <Route path="/drink-result-confirmation" element={<DrinkResultConfirmation />} />
+              <Route path="/drink-result-label" element={<DrinkResultLabel />}></Route>
+            </Routes>
+          </Layout>
       </BrowserRouter>
     </DrinksProvider>
   )

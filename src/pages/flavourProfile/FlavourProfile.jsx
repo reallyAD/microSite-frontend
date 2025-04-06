@@ -14,9 +14,13 @@ function FlavourProfile() {
     return (
       <>
         <BackButton />
-        <div className="h-screen text-3xl text-bold flex justify-center items-center">
-          <p>Flavour Profile!</p>
-          <CircularArrowButton onClick={handleOnClick} />
+        <div className="h-screen text-3xl flex justify-center items-center">
+          <div className="flex flex-col items-center">
+            {/* TODO: Make this dynamically load the choice from previous section */}
+            <h1 className="font-bold">Coffee</h1>
+            <h2>Select your flavour profile</h2>
+            <CircularArrowButton onClick={handleOnClick} />
+          </div>     
         </div>
         
      </>

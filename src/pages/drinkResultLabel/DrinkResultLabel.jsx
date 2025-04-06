@@ -15,8 +15,10 @@ function DrinkResultLabel() {
       <>
         <BackButton />
         <div className="h-screen text-3xl text-bold flex justify-center items-center">
-          <p>Drink Result Label!</p>
-          <CircularArrowButton onClick={handleOnClick} />
+          <div className="flex flex-col items-center">
+            <h1 className="font-bold w-8/12">To make this uniquely yours, add a label to your drink</h1>
+            <CircularArrowButton onClick={handleOnClick} />
+          </div>
         </div>
      </>
     )

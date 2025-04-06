@@ -14,9 +14,12 @@ function DrinkBase() {
     return (
       <>
         <BackButton />
-        <div className="h-screen text-3xl text-bold flex justify-center items-center">
-          <p>Drink Base!</p>
+        <div className="h-screen text-3xl flex justify-center items-center">
+          <div className="flex flex-col items-center">
+            <h1 className="font-bold">What drink are you looking to create?</h1>
+            <p className="text-lg">Pick your base</p>
             <CircularArrowButton onClick={handleOnClick} />
+          </div>
         </div>
      </>
     )

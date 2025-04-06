@@ -20,7 +20,7 @@ function PersonalDetails() {
         <div className="h-screen text-3xl flex justify-center items-center">
             <div className="flex-col">
                 <h1 className="font-bold">What is your name?</h1>
-                <p>Every drink starts with a name</p>
+                <p className="text-lg">Every drink starts with a name</p>
                 <div className="flex flex-row items-center gap-2"> 
                     <TextField 
                         sx={{

@@ -1,7 +1,9 @@
+@import url(./assets/satoshi/css/satoshi.css); 
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
 @import "tailwindcss";
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Geist', sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -13,6 +15,18 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Satoshi-Bold font family as specified by RAD font requirements */
+h1 {
+  font-family: 'Satoshi-Bold', sans-serif;
+  font-weight: 700;
+  font-size: 42px;
+}
+
+/* Geist-San font family for text as specified by RAD font requirements */
+p {
+  font-family: 'Geist', sans-serif;
 }
 
 a {

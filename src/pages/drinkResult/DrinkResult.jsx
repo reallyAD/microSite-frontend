@@ -11,7 +11,7 @@ function DrinkResult() {
         <BackButton />
         <div className="h-screen text-3xl text-bold flex justify-center items-center">
             <div className="flex flex-col items-center">
-                <p className="font-bold text-2xl"> Your Drink</p>
+                <p className="text-2xl"> Your Drink</p>
                 {/* TODO: Dynamically load in data from Chatgpt */}
                 <h1 className="font-bold">Gateau Opera Latte</h1>
                 <p className="my-20"> INSERT IMAGE </p>

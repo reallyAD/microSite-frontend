@@ -7,7 +7,13 @@ function BackButton() {
     const { goBack } = useGoTo();
 
     return (
-        <IconButton style={{ color: 'white' }}>
+        <IconButton 
+            style={{ 
+                color: 'white', 
+                position: 'fixed', 
+                marginTop: 52,
+                marginLeft: 42,
+            }}>
             <ArrowBackIcon onClick={goBack} />
         </IconButton>
     );

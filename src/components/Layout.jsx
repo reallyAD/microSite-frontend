@@ -23,11 +23,11 @@ function Layout({ children }) {
   console.log('Current Path:', path);
 
   return (
-    <div className="relative">
+    <div className="h-screen overflow-hidden relative">
       {showProgressBar && (
         <ProgressBar currentStep={currentStep} totalSteps={8} />
       )}
-      <div className="pt-16">
+      <div className="h-full overflow-hidden">
         {children}
       </div>
     </div>

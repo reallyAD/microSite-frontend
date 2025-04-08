@@ -17,6 +17,28 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* RAD  requirements and standardisation 
+*
+* Custom tailwindCSS theme configs
+*/
+@theme {
+  /* Primary Colors */
+  --color-deepOrange: #FF640A;
+  --color-black: #000000;
+  --color-offWhite: #FDFAF4;
+  --color-lightGray: #BEBEBE;
+
+  /* Secondary Colors */
+  --color-pink: #FFB4F0;
+  --color-green: ##CBEF5E;
+  --color-red: #F54646;
+  --color-grey: #414146;
+
+  /* Fonts */
+  --font-satoshiBold: Satoshi-Bold, sans-serif;
+  --font-geist: Geist, sans-serif;
+}
+
 /* Satoshi-Bold font family as specified by RAD font requirements */
 h1 {
   font-family: 'Satoshi-Bold', sans-serif;

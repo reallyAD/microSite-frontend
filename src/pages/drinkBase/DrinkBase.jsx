@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useGoTo } from '../../utils/useGoTo';
 import BackButton from '../../components/BackButton';
 import CircularArrowButton from '../../components/CircularArrowButton';
+import {useDrinks} from "../../utils/DrinksProvider.jsx";
 
 function DrinkBase() {
 
     const { toFlavourProfile } = useGoTo();
+    const { drinkData, setDrinkData } = useDrinks();
+
+    useEffect(() => {
+        console.log("DRINK DATA IN DRINK BASE: ", drinkData);
+    }, []);
 
     const handleOnClick = () => {
         toFlavourProfile();
@@ -24,5 +30,5 @@ function DrinkBase() {
      </>
     )
   }
-  
+
   export default DrinkBase;

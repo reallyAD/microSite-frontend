@@ -1,4 +1,4 @@
-@import url(./assets/satoshi/css/satoshi.css); 
+@import url(./assets/satoshi/css/satoshi.css);
 @import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap');
 @import "tailwindcss";
 
@@ -17,7 +17,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* RAD  requirements and standardisation 
+/* RAD  requirements and standardisation
 *
 * Custom tailwindCSS theme configs
 */
@@ -30,7 +30,7 @@
 
   /* Secondary Colors */
   --color-pink: #FFB4F0;
-  --color-green: ##CBEF5E;
+  --color-green: #CBEF5E;
   --color-red: #F54646;
   --color-grey: #414146;
 

@@ -1,6 +1,8 @@
 import React from 'react';
 import Button from '@mui/material/Button';
 import { useGoTo } from '../../utils/useGoTo';
+import greenbottle from '../../assets/images/greenbottle.png';
+import orangebottle from '../../assets/images/orangebottle.png';
 
 function Home() {
 
@@ -14,26 +16,32 @@ function Home() {
       <>
         <div className="h-screen text-3xl flex justify-center items-center">
           <div className="flex-col flex items-center">
-            <p className="font-bold my-10">INSERT IMAGE</p>
-            <h1 className="font-bold mb-5 text-4xl"> The Rad. Drink Experience.</h1>
-            <p className="text-lg">
+              {/* Image Row */}
+              <div className="flex ml-8 -space-x-28">
+                  <img src={greenbottle} alt="Green Bottle" className="w-52 rotate-36 h-auto object-contain" />
+                  <img src={orangebottle} alt="Orange Bottle" className="w-52 -rotate-20 h-auto object-contain" />
+              </div>
+              <h1 className="font-bold mb-5 text-4xl"> The <span className="text-deepOrange">RAD.</span> Drink
+                  Experience</h1>
+              <p>
               Create a drink that is uniquely yours.
             </p>
-            <p className="text-lg">
+            <p>
               From Ingredients to flavour - you're in charge.
             </p>
-            <p className="text-lg">
+            <p>
               At the end, we'll turn it to a real creation
             </p>
-            <Button 
-              variant='contained' 
+            <Button
+              variant='contained'
               onClick={handleOnClick}
               sx={{
-                backgroundColor: '#D35400', // dark orange
+                backgroundColor: '#FF640A', // dark orange
+                color: '#000000',
                 '&:hover': {
                   backgroundColor: '#A04000', // darker on hover
                 },
-                marginTop: '20px',
+                marginTop: '24px',
                 fontWeight: 'bold',
               }}
             >
@@ -41,9 +49,9 @@ function Home() {
             </Button>
           </div>
         </div>
-        
+
      </>
     )
   }
-  
+
   export default Home;

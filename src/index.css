@@ -44,11 +44,15 @@ h1 {
   font-family: 'Satoshi-Bold', sans-serif;
   font-weight: 700;
   font-size: 42px;
+  color: #FDFAF4;
 }
 
 /* Geist-San font family for text as specified by RAD font requirements */
 p {
   font-family: 'Geist', sans-serif;
+  color: #FDFAF4;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
 }
 
 a {

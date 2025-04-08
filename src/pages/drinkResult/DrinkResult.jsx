@@ -21,7 +21,7 @@ function DrinkResult() {
 
                 <p className="my-10 font-bold text-3xl"> Let's make this drink a reality?</p>
                 <p className="mb-5 text-lg">Insert your email and we'll reach out to you within 1-2 working days</p>
-                <TextField 
+                <TextField
                         sx={{
                             backgroundColor: 'lightgray',
                             borderRadius: 1,
@@ -30,17 +30,17 @@ function DrinkResult() {
                             width: '75%',
                             marginBottom: '10px'
                         }}
-                        id="email" 
+                        id="email"
                         label="email"
                         variant="outlined"
                         size="small"
                     />
-                <Button 
-                    variant='contained' 
+                <Button
+                    variant='contained'
                     sx={{
-                        backgroundColor: '#D35400', // dark orange
+                        backgroundColor: '#FF640A',
                         '&:hover': {
-                        backgroundColor: '#A04000', // darker on hover
+                        backgroundColor: '#A04000',
                         },
                     }}
                     >
@@ -51,5 +51,5 @@ function DrinkResult() {
      </>
     )
   }
-  
+
   export default DrinkResult;

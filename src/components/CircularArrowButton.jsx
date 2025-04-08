@@ -6,13 +6,13 @@ function CircularArrowButton({onClick}) {
   return (
     <IconButton
       sx={{
-        backgroundColor: '#D35400',         // dark orange
-        color: 'white',                     // icon color
-        borderRadius: '50%',                // circular shape
+        backgroundColor: '#FF640A',
+        color: 'white',
+        borderRadius: '50%',
         width: 56,
         height: 56,
         '&:hover': {
-          backgroundColor: '#A04000',       // darker on hover
+          backgroundColor: '#A04000',
         },
       }}
       onClick={onClick}

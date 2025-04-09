@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from 'react';
 
 // Create a context for the drink data
-const DrinksContext = createContext();  
+const DrinksContext = createContext();
 
 export const useDrinks = () => useContext(DrinksContext);
 
@@ -14,7 +14,7 @@ export const DrinksProvider = ({ children }) => {
         drinkBase: '',
         flavourProfile: [],
         label: '',
-      } 
+      }
 
   const [drinkData, setDrinkData] = useState(DefaultDrinksData);
 

@@ -5,7 +5,7 @@ import PurposeForm from "./components/PurposeForm.jsx";
 
 function DrinkPurpose() {
 
-    const { drinkData} = useDrinks();
+    const { drinkData } = useDrinks();
 
     useEffect(() => {
         console.log("DRINK DATA IN DRINK PURPOSE: ", drinkData);

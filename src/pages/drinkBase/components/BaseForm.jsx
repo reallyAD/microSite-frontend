@@ -1,27 +1,26 @@
 import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import CircularArrowButton from "../../../components/CircularArrowButton.jsx";
-import {useDrinks} from "../../../utils/DrinksProvider.jsx";
-import {useGoTo} from "../../../utils/useGoTo.jsx";
+import { useDrinks } from "../../../utils/DrinksProvider.jsx";
+import { useGoTo } from "../../../utils/useGoTo.jsx";
 
 
-function PurposeForm() {
+function BaseForm () {
 
-    const { toDrinkBase } = useGoTo();
+    const { toFlavourProfile } = useGoTo();
     const { drinkData, setDrinkData } = useDrinks();
+    const [selectedBase, setSelectedBase] = useState(drinkData?.drinkBase || "");
 
-    const [selectedPurpose,  setSelectedPurpose] = useState(drinkData?.purpose || "");
+    const categories = ["Coffee", "Tea", "Juice", "Others"];
 
-    const categories = ["Retail", "Events", "Branding", "Fun"];
-
-    const handleSelectPurpose = (category) => {
-        const newValue = selectedPurpose === category ? "" : category;
-        setSelectedPurpose(newValue);
+    const handleSelectBase = (category) => {
+        const newValue = selectedBase === category ? "" : category;
+        setSelectedBase(newValue);
 
         // Persist immediately to global context
         setDrinkData(prev => ({
             ...prev,
-            purpose: newValue
+            drinkBase: newValue
         }));
     }
 
@@ -29,11 +28,11 @@ function PurposeForm() {
         // Update drink data with selected purpose
         setDrinkData({
             ...drinkData,
-            purpose: selectedPurpose }
+            drinkBase: selectedBase}
         );
 
         // Navigate to next page
-        toDrinkBase();
+        toFlavourProfile();
     }
 
     return (
@@ -43,11 +42,11 @@ function PurposeForm() {
                     {categories.map((category) => (
                         <Button
                             key={category}
-                            onClick={() => handleSelectPurpose(category)}
-                            variant={selectedPurpose === category ? "contained" : "outlined"}
+                            onClick={() => handleSelectBase(category)}
+                            variant={selectedBase=== category ? "contained" : "outlined"}
                             sx={{
                                 // If purpose is selected, use green, else use pink
-                                backgroundColor: selectedPurpose === category ? '#CBEF5E' : '#FFB4F0',
+                                backgroundColor: selectedBase === category ? '#CBEF5E' : '#FFB4F0',
                                 color: '#000000',
                                 borderColor: "inherit",
                                 '&:hover': {
@@ -69,4 +68,4 @@ function PurposeForm() {
     );
 }
 
-export default PurposeForm;
+export default BaseForm;

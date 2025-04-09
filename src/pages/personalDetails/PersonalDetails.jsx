@@ -52,6 +52,7 @@ function PersonalDetails() {
                         label="Name"
                         variant="outlined"
                         size="small"
+                        value={drinkData?.name || ""}
                     />
                     <CircularArrowButton
                         onClick={handleOnClick}

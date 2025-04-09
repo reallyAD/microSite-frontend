@@ -193,9 +193,10 @@ function FlavourProfileForm () {
     };
 
     const handleOnClick = () => {
-        const structuredFlavourProfile = Object.entries(flavourProfile).map(([category, intensity]) => ({
+        const structuredFlavourProfile = Object.entries(flavourProfile).map(([category, {intensity, value}]) => ({
             category,
-            intensity
+            intensity,
+            value
         }));
  
         setDrinkData(prev => ({

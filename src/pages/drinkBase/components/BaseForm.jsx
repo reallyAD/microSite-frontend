@@ -9,17 +9,19 @@ function BaseForm () {
 
     const { toFlavourProfile } = useGoTo();
     const { drinkData, setDrinkData } = useDrinks();
-
-    const [selectedBase,  setSelectedBase] = useState("");
+    const [selectedBase, setSelectedBase] = useState(drinkData?.drinkBase || "");
 
     const categories = ["Coffee", "Tea", "Juice", "Others"];
 
     const handleSelectBase = (category) => {
-        if (selectedBase === category) {
-            setSelectedBase(""); // Deselect if already selected
-        } else {
-            setSelectedBase(category);
-        }
+        const newValue = selectedBase === category ? "" : category;
+        setSelectedBase(newValue);
+
+        // Persist immediately to global context
+        setDrinkData(prev => ({
+            ...prev,
+            drinkBase: newValue
+        }));
     }
 
     const handleOnClick = () => {

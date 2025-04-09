@@ -10,16 +10,19 @@ function PurposeForm() {
     const { toDrinkBase } = useGoTo();
     const { drinkData, setDrinkData } = useDrinks();
 
-    const [selectedPurpose,  setSelectedPurpose] = useState("");
+    const [selectedPurpose,  setSelectedPurpose] = useState(drinkData?.purpose || "");
 
     const categories = ["Retail", "Events", "Branding", "Fun"];
 
     const handleSelectPurpose = (category) => {
-        if (selectedPurpose === category) {
-            setSelectedPurpose(""); // Deselect if already selected
-        } else {
-            setSelectedPurpose(category);
-        }
+        const newValue = selectedPurpose === category ? "" : category;
+        setSelectedPurpose(newValue);
+
+        // Persist immediately to global context
+        setDrinkData(prev => ({
+            ...prev,
+            purpose: newValue
+        }));
     }
 
     const handleOnClick = () => {

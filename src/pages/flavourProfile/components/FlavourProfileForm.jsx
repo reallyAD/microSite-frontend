@@ -173,7 +173,7 @@ function FlavourProfileForm () {
     const { drinkData, setDrinkData } = useDrinks();
 
     const initialFlavourProfile = drinkData?.flavourProfile?.length
-        ? Object.fromEntries(drinkData.flavourProfile.map(({ category, intensity }) => [category, intensity]))
+        ? Object.fromEntries(drinkData.flavourProfile.map(({ category, intensity, value }) => [category, {intensity, value}]))
         : defaultFlavourProfile;
 
     const [flavourProfile, setFlavourProfile] = useState(initialFlavourProfile);
@@ -220,12 +220,26 @@ function FlavourProfileForm () {
         // Retrieve the label from the intensity map based on the value
         const label = intensityMap[closestValue];
 
-        setFlavourProfile(prev => ({
-            ...prev,
+        // Update local state
+        const updatedProfile = {
+            ...flavourProfile,
             [flavour]: {
                 intensity: label,
                 value: newValue,
             },
+        };
+        setFlavourProfile(updatedProfile);
+
+        // Immediately update global state as well
+        const structuredFlavourProfile = Object.entries(updatedProfile).map(([category, {intensity, value}]) => ({
+            category,
+            intensity,
+            value,
+        }));
+
+        setDrinkData(prev => ({
+            ...prev,
+            flavourProfile: structuredFlavourProfile
         }));
     }
 

@@ -267,6 +267,7 @@ function FlavourProfileForm () {
             </div>
 
             <div className="flex flex-row justify-center items-center gap-x-4">
+                {/* //TODO: Randomise sliders */}
                 <ReusableButton
                     onClick={handleOnClick}
                     text="Surprise me"

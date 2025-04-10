@@ -244,6 +244,21 @@ function FlavourProfileForm () {
         }));
     }
 
+    const handleOnRandomise = () => {
+        const randomisedProfile = Object.fromEntries(
+            Object.entries(flavourProfile).map(([key]) => {
+                const validValues = [0, 25, 50, 75, 100]; // Allowed values
+                const randomValue = validValues[Math.floor(Math.random() * validValues.length)]; // Randomly pick one of the valid values
+                const intensityMap = profiles.find(p => p.title === key)?.flavourIntensity || {};
+                const label = intensityMap[randomValue];
+
+                return [key, { intensity: label, value: randomValue }];
+            })
+        );
+
+        setFlavourProfile(randomisedProfile);
+    }
+
 
 
     return (
@@ -267,9 +282,8 @@ function FlavourProfileForm () {
             </div>
 
             <div className="flex flex-row justify-center items-center gap-x-4">
-                {/* //TODO: Randomise sliders */}
                 <ReusableButton
-                    onClick={handleOnClick}
+                    onClick={handleOnRandomise}
                     text="Surprise me"
                     color="green"
                     width={140}

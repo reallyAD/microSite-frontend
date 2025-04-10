@@ -46,7 +46,7 @@ function DrinkResultConfirmation() {
                 <p className="font-bold text-2xl">
                   <span className="text-deepOrange"> Taste Profile </span>
                 </p>
-                <p classname="text-xs">{drinkDetails.tasteProfile.join(",")}</p>
+                <p className="text-xs">{drinkDetails.tasteProfile.join(",")}</p>
               </div>
             </div>
             <div>

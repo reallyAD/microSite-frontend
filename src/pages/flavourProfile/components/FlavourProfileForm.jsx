@@ -6,7 +6,7 @@ import FlavourSlider from './FlavourSlider.jsx';
 import LoadingPage from '../../../components/LoadingWizard.jsx';
 
 
-function FlavourProfileForm ({setParentLoading}) {
+function FlavourProfileForm () {
 
     const defaultFlavourProfile = {
         Chocolatey: {
@@ -207,7 +207,6 @@ function FlavourProfileForm ({setParentLoading}) {
         }));
 
         setIsLoading(true);
-        setParentLoading(true);
         await new Promise((resolve) => setTimeout(resolve, 2000));
         // Navigate to next page
         toDrinkResultConfirmation();
@@ -272,6 +271,12 @@ function FlavourProfileForm ({setParentLoading}) {
     return (
         <>
             <div className="mb-8">
+                <div className="text-3xl flex justify-center items-center">
+                    <div className="flex flex-col items-center">
+                        <h1 className="font-bold mb-4">{drinkData.drinkBase || "Others"}</h1>
+                        <h2 className="font-satoshiBold mb-14">Select your flavour profile</h2>
+                    </div>
+                </div>
                 <div className="grid grid-cols-2 gap-x-34 gap-y-2">
                     {profiles.map((profile, index) => (
                         <FlavourSlider

@@ -4,6 +4,7 @@ import { useGoTo } from "../../../utils/useGoTo.jsx";
 import ReusableButton from "../../../components/ReusableButton.jsx";
 import FlavourSlider from './FlavourSlider.jsx';
 import LoadingPage from '../../../components/LoadingWizard.jsx';
+import wizard from "../../../assets/images/wizard.gif";
 
 
 function FlavourProfileForm () {
@@ -264,7 +265,7 @@ function FlavourProfileForm () {
     }
 
     if (isLoading) {
-        return <LoadingPage message ="We're working our Magic..." />
+        return <LoadingPage gif={wizard} message ="We're working our Magic..." />
     }
 
 

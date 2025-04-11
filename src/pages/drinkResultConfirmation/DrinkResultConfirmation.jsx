@@ -2,12 +2,18 @@ import React from 'react';
 import BackButton from '../../components/BackButton';
 import { useGoTo } from '../../utils/useGoTo';
 import ResusableButton from '../../components/ReusableButton';
+import LoadingPage from "../../components/LoadingWizard";
+import witch from "../../assets/images/witch.gif"
 
 function DrinkResultConfirmation() {
 
     const { toDrinkResultLabel } = useGoTo();
 
-    const handleOnClick = () => {
+    const [isLoading, setIsLoading] = React.useState(false);
+
+    const handleOnClick = async () => {
+        setIsLoading(true);
+        await new Promise((resolve) => setTimeout(resolve, 2000));
         toDrinkResultLabel();
     }
 
@@ -16,6 +22,10 @@ function DrinkResultConfirmation() {
       description: "Inspired by the French layered almond cake - a harmonious blend of almond, chocolate and coffee",
       ingredients: ["Coffee", "Honey", "Roasted Almond", "Cocoa", "Milk"],
       tasteProfile: ["Sweet", "Nutty", "Chocolatey"],
+    }
+
+    if (isLoading) {
+      return <LoadingPage gif={witch} message="Adding sugar, spice and everything nice" />
     }
 
     // TODO: Dynamically load data from output of chatgpt

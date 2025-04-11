@@ -24,11 +24,8 @@ function FlavourProfile() {
         <BackButton />
         <div className="h-screen text-3xl flex justify-center items-center">
           <div className="flex flex-col items-center">
-            <h1 className="font-bold mb-4">{drinkData.drinkBase || "Others"}</h1>
-            <h2 className="font-satoshiBold mb-14">Select your flavour profile</h2>
             <FlavourProfileForm/>
           </div>
-
         </div>
 
      </>

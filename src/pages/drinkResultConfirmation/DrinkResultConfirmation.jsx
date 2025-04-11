@@ -1,7 +1,6 @@
 import React from 'react';
 import BackButton from '../../components/BackButton';
 import { useGoTo } from '../../utils/useGoTo';
-import CircularArrowButton from '../../components/CircularArrowButton';
 import ResusableButton from '../../components/ReusableButton';
 
 function DrinkResultConfirmation() {
@@ -37,13 +36,13 @@ function DrinkResultConfirmation() {
 
             <div className="flex flex-row mt-10 justify-between">
               <div className="w-5/12">
-                <p className="font-bold text-2xl">
+                <p className="font-bold">
                   <span className="text-deepOrange"> Ingredients </span>
                 </p>
                 <p className="text-xs">{drinkDetails.ingredients.join(", ")}</p>
               </div>
               <div>
-                <p className="font-bold text-2xl">
+                <p className="font-bold">
                   <span className="text-deepOrange"> Taste Profile </span>
                 </p>
                 <p className="text-xs">{drinkDetails.tasteProfile.join(",")}</p>

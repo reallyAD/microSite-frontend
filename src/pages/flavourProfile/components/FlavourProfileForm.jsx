@@ -3,9 +3,10 @@ import { useDrinks } from "../../../utils/DrinksProvider.jsx";
 import { useGoTo } from "../../../utils/useGoTo.jsx";
 import ReusableButton from "../../../components/ReusableButton.jsx";
 import FlavourSlider from './FlavourSlider.jsx';
+import LoadingPage from '../../../components/LoadingWizard.jsx';
 
 
-function FlavourProfileForm () {
+function FlavourProfileForm ({setParentLoading}) {
 
     const defaultFlavourProfile = {
         Chocolatey: {
@@ -171,6 +172,7 @@ function FlavourProfileForm () {
 
     const { toDrinkResultConfirmation } = useGoTo();
     const { drinkData, setDrinkData } = useDrinks();
+    const [isLoading, setIsLoading] = React.useState(false);
 
     const initialFlavourProfile = drinkData?.flavourProfile?.length
         ? Object.fromEntries(drinkData.flavourProfile.map(({ category, intensity, value }) => [category, {intensity, value}]))
@@ -192,7 +194,7 @@ function FlavourProfileForm () {
         });
     };
 
-    const handleOnClick = () => {
+    const handleOnClick = async () => {
         const structuredFlavourProfile = Object.entries(flavourProfile).map(([category, {intensity, value}]) => ({
             category,
             intensity,
@@ -204,6 +206,9 @@ function FlavourProfileForm () {
             flavourProfile: structuredFlavourProfile
         }));
 
+        setIsLoading(true);
+        setParentLoading(true);
+        await new Promise((resolve) => setTimeout(resolve, 2000));
         // Navigate to next page
         toDrinkResultConfirmation();
     }
@@ -259,6 +264,9 @@ function FlavourProfileForm () {
         setFlavourProfile(randomisedProfile);
     }
 
+    if (isLoading) {
+        return <LoadingPage message ="We're working our Magic..." />
+    }
 
 
     return (

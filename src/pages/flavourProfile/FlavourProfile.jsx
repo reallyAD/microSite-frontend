@@ -10,6 +10,8 @@ function FlavourProfile() {
 
     const { drinkData } = useDrinks();
 
+    const [showLoading, setShowLoading] = React.useState(false);
+
     useEffect(() => {
         console.log("DRINK DATA IN FLAVOUR PROFILE: ", drinkData);
     }, []);
@@ -24,9 +26,13 @@ function FlavourProfile() {
         <BackButton />
         <div className="h-screen text-3xl flex justify-center items-center">
           <div className="flex flex-col items-center">
-            <h1 className="font-bold mb-4">{drinkData.drinkBase || "Others"}</h1>
-            <h2 className="font-satoshiBold mb-14">Select your flavour profile</h2>
-            <FlavourProfileForm/>
+            {!showLoading && (
+              <>
+                <h1 className="font-bold mb-4">{drinkData.drinkBase || "Others"}</h1>
+                <h2 className="font-satoshiBold mb-14">Select your flavour profile</h2>
+              </>
+            )}
+            <FlavourProfileForm setParentLoading={setShowLoading}/>
           </div>
 
         </div>

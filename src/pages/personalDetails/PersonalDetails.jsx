@@ -25,9 +25,11 @@ function PersonalDetails() {
       <>
         <BackButton />
         <div className="h-screen text-3xl flex justify-center items-center">
-            <div className="flex-col">
-                <h1>What is your name?</h1>
-                <p className="mt-4 mb-2">Every drink starts with a name</p>
+            <div className="flex-col ">
+                <div className="flex flex-col items-center text-center">
+                    <h1 className="text-3xl font-bold">What is your name?</h1>
+                    <p className="mt-4 mb-2 text-lg">Every drink starts with a name</p>
+                </div>
                 <div className="flex flex-row items-center gap-2">
                     <TextField
                         sx={{
@@ -35,7 +37,7 @@ function PersonalDetails() {
                             borderRadius: 1,
                             display: 'flex',
                             justifyContent: 'center',
-                            width: '75%',
+                            width: '100%',
                             marginRight: '4px',
                             '& .MuiOutlinedInput-root': {
                                 '&.Mui-focused fieldset': {

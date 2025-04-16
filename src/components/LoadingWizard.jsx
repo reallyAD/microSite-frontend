@@ -1,10 +1,8 @@
-import wizard from "../assets/images/wizard.gif"
-
-const LoadingPage = ({message= 'Processing'}) => {
+const LoadingPage = ({gif, message= 'Processing'}) => {
     return (
         <div className="flex flex-col items-center justify-center h-screen bg-black">
             <img
-                src={wizard}
+                src={gif}
                 alt="Loading..."
                 className="w-40 h-40"
             />

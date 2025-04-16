@@ -27,10 +27,10 @@ function Home() {
               Create a drink that is uniquely yours.
             </p>
             <p>
-              From Ingredients to flavour - you're in charge.
+              From ingredients to flavour - you're in charge.
             </p>
             <p>
-              At the end, we'll turn it to a real creation
+              At the end, we'll turn it to a real creation.
             </p>
             <Button
               variant='contained'

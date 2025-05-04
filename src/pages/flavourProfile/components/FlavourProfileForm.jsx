@@ -3,184 +3,81 @@ import { useDrinks } from "../../../utils/DrinksProvider.jsx";
 import { useGoTo } from "../../../utils/useGoTo.jsx";
 import ReusableButton from "../../../components/ReusableButton.jsx";
 import FlavourSlider from './FlavourSlider.jsx';
+import { drinkBaseFlavourProfiles, defaultFlavourProfile } from './flavourProfileData.jsx';
 import LoadingPage from '../../../components/LoadingWizard.jsx';
 import wizard from "../../../assets/images/wizard.gif";
 
 
-function FlavourProfileForm () {
-
-    const defaultFlavourProfile = {
-        Chocolatey: {
-            intensity: "Balanced",
-            value: 50
-        },
-        Nutty: {
-            intensity: "Balanced",
-            value: 50
-        },
-        Fruity: {
-            intensity: "Balanced",
-            value: 50
-        },
-        Acidity: {
-            intensity: "Balanced",
-            value: 50
-        },
-        Floral: {
-            intensity: "Balanced",
-            value: 50
-        },
-        Sweet: {
-            intensity: "Balanced",
-            value: 50
-        }
-    }
-
-    const profiles = [
-        {
-            title: "Chocolatey",
-            minLabel: "Subtle",
-            maxLabel: "Rich",
-            marks: [
-                {
-                    label: "Subtle",
-                    value: 0
-                },
-                {
-                    label: "Rich",
-                    value: 100
-                }
-            ],
-            flavourIntensity: {
-                0: "Subtle",
-                25: "Less Subtle",
-                50: "Balanced",
-                75: "Less Rich",
-                100: "Rich"
-            }
-        },
-        {
-            title: "Acidity",
-            minLabel: "Smooth",
-            maxLabel: "Zesty",
-            marks: [
-                {
-                    label: "Smooth",
-                    value: 0
-                },
-                {
-                    label: "Zesty",
-                    value: 100
-                }
-            ],
-            flavourIntensity: {
-                0: "Smooth",
-                25: "Less Smooth",
-                50: "Balanced",
-                75: "Less Zesty",
-                100: "Zesty"
-            }
-        },
-        {
-            title: "Nutty",
-            minLabel: "Hints",
-            maxLabel: "Roasted",
-            marks: [
-                {
-                    label: "Hints",
-                    value: 0
-                },
-                {
-                    label: "Roasted",
-                    value: 100
-                }
-            ],
-            flavourIntensity: {
-                0: "Hints",
-                25: "Less Hints",
-                50: "Balanced",
-                75: "Less Roasted",
-                100: "Roasted"
-            }
-        },{
-            title: "Floral",
-            minLabel: "Delicate",
-            maxLabel: "Fragrant",
-            marks: [
-                {
-                    label: "Delicate",
-                    value: 0
-                },
-                {
-                    label: "Fragrant",
-                    value: 100
-                }
-            ],
-            flavourIntensity: {
-                0: "Delicate",
-                25: "Less Delicate",
-                50: "Balanced",
-                75: "Less Fragrant",
-                100: "Fragrant"
-            }
-        },
-        {
-            title: "Fruity",
-            minLabel: "Light",
-            maxLabel: "Juicy",
-            marks: [
-                {
-                    label: "Light",
-                    value: 0
-                },
-                {
-                    label: "Juicy",
-                    value: 100
-                }
-            ],
-            flavourIntensity: {
-                0: "Light",
-                25: "Less Light",
-                50: "Balance",
-                75: "Less Juicy",
-                100: "Fragrant"
-            }
-        },
-        {
-            title: "Sweet",
-            minLabel: "Subtle",
-            maxLabel: "Sweet",
-            marks: [
-                {
-                    label: "Subtle",
-                    value: 0
-                },
-                {
-                    label: "Sweet",
-                    value: 100
-                }
-            ],
-            flavourIntensity: {
-                0: "Subtle",
-                25: "Less Subtle",
-                50: "Balanced",
-                75: "Less Sweet",
-                100: "Sweet"
-            }
-        }
-    ];
-
+function FlavourProfileForm () { 
 
     const { toDrinkResultConfirmation } = useGoTo();
     const { drinkData, setDrinkData } = useDrinks();
     const [isLoading, setIsLoading] = React.useState(false);
 
+    // Get current drink base from drinkData
+    const currDrinkBase = drinkData?.drinkBase || "Others";
+
+    console.log("Current drink base: ", currDrinkBase);
+    console.log("Defaault flavour profile: ", defaultFlavourProfile[currDrinkBase]);
+
+    // Initialize flavor profile based on current drink base
+    useEffect(() => {
+        // If the flavor profile doesn't match the current drink base, reset it
+        if (drinkData?.flavourProfile?.length) {
+            // Check if the current flavor profile matches the current drink base
+            const currentCategories = drinkData.flavourProfile.map(item => item.category);
+            const expectedCategories = Object.keys(defaultFlavourProfile[currDrinkBase]);
+            
+            // If categories don't match, reset to default for current drink base
+            const categoriesMatch = expectedCategories.every(cat => currentCategories.includes(cat)) && 
+                                   currentCategories.length === expectedCategories.length;
+            
+            if (!categoriesMatch) {
+                // Reset flavor profile to default for current drink base
+                const defaultProfile = defaultFlavourProfile[currDrinkBase];
+                const structuredFlavourProfile = Object.entries(defaultProfile).map(([category, {intensity, value}]) => ({
+                    category,
+                    intensity,
+                    value
+                }));
+                
+                setDrinkData(prev => ({
+                    ...prev,
+                    flavourProfile: structuredFlavourProfile
+                }));
+                
+                // Update local state
+                setFlavourProfile(defaultProfile);
+            }
+        } else {
+            // Initialize with default flavor profile
+            const defaultProfile = defaultFlavourProfile[currDrinkBase];
+            setFlavourProfile(defaultProfile);
+            
+            // Also update global state
+            const structuredFlavourProfile = Object.entries(defaultProfile).map(([category, {intensity, value}]) => ({
+                category,
+                intensity,
+                value
+            }));
+            
+            setDrinkData(prev => ({
+                ...prev,
+                flavourProfile: structuredFlavourProfile
+            }));
+        }
+    }, [currDrinkBase, setDrinkData]);
+
     const initialFlavourProfile = drinkData?.flavourProfile?.length
         ? Object.fromEntries(drinkData.flavourProfile.map(({ category, intensity, value }) => [category, {intensity, value}]))
-        : defaultFlavourProfile;
+        : defaultFlavourProfile[currDrinkBase];
 
+    // Set local state
     const [flavourProfile, setFlavourProfile] = useState(initialFlavourProfile);
-
+    
+    // Get current profile based on drink base
+    const currentProfile = drinkBaseFlavourProfiles[currDrinkBase] || defaultFlavourProfile;
+    
     useEffect(() => {
         console.log("Flavour Profile IN FORM: ", flavourProfile);
     }, [flavourProfile]);
@@ -218,7 +115,7 @@ function FlavourProfileForm () {
         console.log(`Slider for ${flavour} changed to`, newValue);
 
         // Finds intensity values for the selected flavour
-        const intensityMap = profiles.find(p => p.title === flavour)?.flavourIntensity || {};
+        const intensityMap = currentProfile.find(p => p.title === flavour)?.flavourIntensity || {};
 
         // Finds the closest intensity value from the slider
         const closestValue = findClosestIntensityValue(newValue, Object.keys(intensityMap).map(Number));
@@ -254,7 +151,7 @@ function FlavourProfileForm () {
             Object.entries(flavourProfile).map(([key]) => {
                 const validValues = [0, 25, 50, 75, 100]; // Allowed values
                 const randomValue = validValues[Math.floor(Math.random() * validValues.length)]; // Randomly pick one of the valid values
-                const intensityMap = profiles.find(p => p.title === key)?.flavourIntensity || {};
+                const intensityMap = currentProfile.find(p => p.title === key)?.flavourIntensity || {};
                 const label = intensityMap[randomValue];
 
                 return [key, { intensity: label, value: randomValue }];
@@ -279,10 +176,10 @@ function FlavourProfileForm () {
                     </div>
                 </div>
                 <div className="grid grid-cols-2 gap-x-34 gap-y-2">
-                    {profiles.map((profile, index) => (
+                    {currentProfile.map((profile, index) => (
                         <FlavourSlider
                             key={index}
-                            value={flavourProfile[profile.title].value}
+                            value={flavourProfile[profile.title]?.value}
                             title={profile.title}
                             minLabel={profile.minLabel}
                             maxLabel={profile.maxLabel}

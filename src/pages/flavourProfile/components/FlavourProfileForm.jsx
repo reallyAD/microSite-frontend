@@ -6,6 +6,7 @@ import FlavourSlider from './FlavourSlider.jsx';
 import { drinkBaseFlavourProfiles, defaultFlavourProfile } from './flavourProfileData.jsx';
 import LoadingPage from '../../../components/LoadingWizard.jsx';
 import wizard from "../../../assets/images/wizard.gif";
+import drinkService from "../../../api/drinkService.js";
 
 
 function FlavourProfileForm () { 
@@ -94,6 +95,26 @@ function FlavourProfileForm () {
         });
     };
 
+    const handleGenerate = async () => {
+        const userDrinkData = drinkData;
+
+        console.log("USER DRINK DATA BEFORE SENDING: ", userDrinkData);
+
+        try {
+            setIsLoading(true);
+            const gptResponse = await drinkService.generateDrink(userDrinkData);
+            console.log("GPT RESPONSE: ", gptResponse);
+            
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+            // Navigate to next page
+            toDrinkResultConfirmation(gptResponse);
+
+        } catch (error) {
+            console.error("Error generating drink:", error);
+        }
+    }
+
+    // To deprecate (Replaced by handleGenerate)
     const handleOnClick = async () => {
         const structuredFlavourProfile = Object.entries(flavourProfile).map(([category, {intensity, value}]) => ({
             category,
@@ -218,7 +239,7 @@ function FlavourProfileForm () {
                     height={36}
                 />
                 <ReusableButton
-                    onClick={handleOnClick}
+                    onClick={handleGenerate}
                     text="Generate"
                     color="pink"
                     width={140}

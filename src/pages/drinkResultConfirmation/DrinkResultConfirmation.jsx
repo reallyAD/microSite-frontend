@@ -4,12 +4,16 @@ import { useGoTo } from '../../utils/useGoTo';
 import ResusableButton from '../../components/ReusableButton';
 import LoadingPage from "../../components/LoadingWizard";
 import witch from "../../assets/images/witch.gif"
+import { useLocation } from 'react-router-dom';
 
 function DrinkResultConfirmation() {
 
     const { toDrinkResultLabel } = useGoTo();
 
     const [isLoading, setIsLoading] = React.useState(false);
+
+    const location = useLocation();
+    const generatedDrink = location.state || {};
 
     const handleOnClick = async () => {
         setIsLoading(true);
@@ -18,11 +22,12 @@ function DrinkResultConfirmation() {
     }
 
     const drinkDetails = {
-      name: "Gateu Opera Latte",
-      description: "Inspired by the French layered almond cake - a harmonious blend of almond, chocolate and coffee",
-      ingredients: ["Coffee", "Honey", "Roasted Almond", "Cocoa", "Milk"],
-      tasteProfile: ["Sweet", "Nutty", "Chocolatey"],
-    }
+      name: generatedDrink.name,
+      category: generatedDrink.category,  
+      description: generatedDrink.description,
+      ingredients: generatedDrink.ingredients.split(',').map(ingredient => ingredient.trim()),
+      taste_profile: generatedDrink.taste_profile.split(',').map(taste => taste.trim()),
+    } 
 
     if (isLoading) {
       return <LoadingPage gif={witch} message="Adding sugar, spice and everything nice" />
@@ -55,7 +60,7 @@ function DrinkResultConfirmation() {
                 <p className="font-bold">
                   <span className="text-deepOrange"> Taste Profile </span>
                 </p>
-                <p className="text-xs">{drinkDetails.tasteProfile.join(",")}</p>
+                <p className="text-xs">{drinkDetails.taste_profile.join(", ")}</p>
               </div>
             </div>
             <div>

@@ -13,12 +13,12 @@ function FlavourProfileForm () {
     const { toDrinkResultConfirmation } = useGoTo();
     const { drinkData, setDrinkData } = useDrinks();
     const [isLoading, setIsLoading] = React.useState(false);
+    const [isInitialised, setIsInitialised] = useState(false);
 
     // Get current drink base from drinkData
     const currDrinkBase = drinkData?.drinkBase || "Others";
 
     console.log("Current drink base: ", currDrinkBase);
-    console.log("Defaault flavour profile: ", defaultFlavourProfile[currDrinkBase]);
 
     // Initialize flavor profile based on current drink base
     useEffect(() => {
@@ -66,6 +66,8 @@ function FlavourProfileForm () {
                 flavourProfile: structuredFlavourProfile
             }));
         }
+
+        setIsInitialised(true);
     }, [currDrinkBase, setDrinkData]);
 
     const initialFlavourProfile = drinkData?.flavourProfile?.length
@@ -147,22 +149,32 @@ function FlavourProfileForm () {
     }
 
     const handleOnRandomise = () => {
+        console.log("Flavour profile IN RANDOMISED", flavourProfile);
+        console.log("Current profile IN RANDOMISED: ", currentProfile);
         const randomisedProfile = Object.fromEntries(
             Object.entries(flavourProfile).map(([key]) => {
                 const validValues = [0, 25, 50, 75, 100]; // Allowed values
                 const randomValue = validValues[Math.floor(Math.random() * validValues.length)]; // Randomly pick one of the valid values
                 const intensityMap = currentProfile.find(p => p.title === key)?.flavourIntensity || {};
+
+                console.log("Intensity map: ", intensityMap, key);
                 const label = intensityMap[randomValue];
 
                 return [key, { intensity: label, value: randomValue }];
             })
         );
 
+        console.log("Randomised profile: ", randomisedProfile);
+
         setFlavourProfile(randomisedProfile);
     }
 
     if (isLoading) {
         return <LoadingPage gif={wizard} message ="We're working our Magic..." />
+    }
+
+    if (!isInitialised) {
+        return <div> Loading Flavor Profiles...</div>
     }
 
 
@@ -176,18 +188,23 @@ function FlavourProfileForm () {
                     </div>
                 </div>
                 <div className="grid grid-cols-2 gap-x-34 gap-y-2">
-                    {currentProfile.map((profile, index) => (
-                        <FlavourSlider
-                            key={index}
-                            value={flavourProfile[profile.title]?.value}
-                            title={profile.title}
-                            minLabel={profile.minLabel}
-                            maxLabel={profile.maxLabel}
-                            marks={profile.marks}
-                            onChangeValue={handleOnChange(profile.title)}
-                            flavourIntensity={profile.flavourIntensity}
-                        />
-                    ))}
+                    {currentProfile.map((profile, index) => {
+                        // Ensure the value is always defined by using a default of 0
+                        const sliderValue = flavourProfile[profile.title]?.value ?? 0;
+                        
+                        return (
+                            <FlavourSlider
+                                key={index}
+                                value={sliderValue}
+                                title={profile.title}
+                                minLabel={profile.minLabel}
+                                maxLabel={profile.maxLabel}
+                                marks={profile.marks}
+                                onChangeValue={handleOnChange(profile.title)}
+                                flavourIntensity={profile.flavourIntensity}
+                            />
+                        );
+                    })}
 
                 </div>
             </div>

@@ -104,7 +104,7 @@ function FlavourProfileForm () {
             setIsLoading(true);
             const gptResponse = await drinkService.generateDrink(userDrinkData);
             console.log("GPT RESPONSE: ", gptResponse);
-            
+
             await new Promise((resolve) => setTimeout(resolve, 1000));
             // Navigate to next page
             toDrinkResultConfirmation(gptResponse);
@@ -186,8 +186,21 @@ function FlavourProfileForm () {
         );
 
         console.log("Randomised profile: ", randomisedProfile);
-
+        
+        // Update local state
         setFlavourProfile(randomisedProfile);
+
+        // Update global state
+        const structuredFlavourProfile = Object.entries(randomisedProfile).map(([category, {intensity, value}]) => ({
+            category,
+            intensity,
+            value,
+        }));
+
+        setDrinkData(prev => ({
+            ...prev,
+            flavourProfile: structuredFlavourProfile
+        }));
     }
 
     if (isLoading) {

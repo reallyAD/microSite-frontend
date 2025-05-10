@@ -9,7 +9,7 @@ export const useGoTo = () => {
         toDrinkPurpose: () => navigate('/drink-purpose'),
         toDrinkBase: () => navigate('/drink-base'),
         toFlavourProfile: () => navigate('/flavour-profile'),
-        toDrinkResultConfirmation: () => navigate('/drink-result-confirmation'),
+        toDrinkResultConfirmation: (generatedDrink) => navigate('/drink-result-confirmation', {state: generatedDrink}),
         toDrinkResultLabel: () => navigate('/drink-result-label'),
         toDrinkResult: () => navigate('/drink-result'),
         goBack: () => navigate(-1), // Goes back by 1 page

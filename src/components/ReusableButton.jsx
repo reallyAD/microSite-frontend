@@ -21,7 +21,7 @@ function darkenHexColor(hex, percent) {
     return `#${newColor}`;
 }
 
-function ResusableButton({ text, onClick, color, width, height }) {
+function ResusableButton({ text, onClick, color, width, height, disabled}) {
 
     const buttonColorMap = {
         deepOrange: "#FF640A",
@@ -41,13 +41,15 @@ function ResusableButton({ text, onClick, color, width, height }) {
     return (
       <Button
           variant='contained'
-          onClick={onClick}
+          onClick={disabled ? undefined : onClick }
           sx={{
-              backgroundColor: buttonColor,
+              backgroundColor: disabled ? 'lightgray' : buttonColor,
               color: '#000000',
               '&:hover': {
-                  backgroundColor: hoverColor,
+                  backgroundColor: disabled ? 'lightgray' : hoverColor,
               },
+              cursor: disabled ? 'not-allowed' : 'pointer',
+              pointerEvents: disabled ? 'none' : 'auto',
               fontWeight: 'bold',
               width: `${width}px`,
               height: `${height}px`,

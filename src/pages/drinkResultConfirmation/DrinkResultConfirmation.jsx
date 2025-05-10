@@ -24,7 +24,7 @@ function DrinkResultConfirmation() {
     }
 
     const drinkDetails = {
-      name: generatedDrink.name,
+      drink_name: generatedDrink.drink_name,
       category: generatedDrink.category,  
       description: generatedDrink.description,
       ingredients: generatedDrink.ingredients.split(',').map(ingredient => ingredient.trim()),
@@ -40,17 +40,17 @@ function DrinkResultConfirmation() {
     <>
       <BackButton />
 
-      <div className="h-screen bg-black text-white p-4 flex flex-col items-center justify-center transform scale-110">
+      <div className="h-screen bg-black text-white p-4 flex flex-col items-center justify-center transform scale-100">
 
         {/* Main content */}
         <div className="w-full max-w-4xl flex justify-between">
 
           {/* Left column */}
           <div className="flex flex-col items-center">
-            <span className="font-bold text-4xl">Your Drink</span>
+            <span className="font-bold text-3xl">Your Drink</span>
             <img src={orangebottle} alt="Generated Drink" className="w-72 h-auto mt-4 rotate-15" />
-            <h2 className="text-4xl font-bold text-deepOrange ">
-              {drinkDetails.name}
+            <h2 className="text-3xl font-bold text-deepOrange ">
+              {drinkDetails.drink_name}
             </h2>
           </div>
 

@@ -2,20 +2,22 @@ import React from 'react';
 import IconButton from '@mui/material/IconButton';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
-function CircularArrowButton({onClick}) {
+function CircularArrowButton({onClick, disabled}) {
   return (
     <IconButton
       sx={{
-        backgroundColor: '#FF640A',
+        backgroundColor: disabled ? 'lightgray' : '#FF640A', // Gray background when disabled
         color: 'white',
         borderRadius: '50%',
         width: 56,
         height: 56,
+        cursor: disabled ? 'not-allowed' : 'pointer', // Show "not-allowed" cursor when disabled
+        pointerEvents: disabled ? 'none' : 'auto', // Disable hover and click interactions when disabled
         '&:hover': {
-          backgroundColor: '#A04000',
+          backgroundColor: disabled ? 'lightgray' : '#A04000', // Prevent hover effect when disabled
         },
       }}
-      onClick={onClick}
+      onClick={disabled ? undefined : onClick} // Prevent click when disabled
     >
       <ArrowForwardIcon />
     </IconButton>

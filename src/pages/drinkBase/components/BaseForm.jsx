@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import CircularArrowButton from "../../../components/CircularArrowButton.jsx";
 import { useDrinks } from "../../../utils/DrinksProvider.jsx";
@@ -10,18 +10,17 @@ function BaseForm () {
     const { toFlavourProfile } = useGoTo();
     const { drinkData, setDrinkData } = useDrinks();
     const [selectedBase, setSelectedBase] = useState(drinkData?.drinkBase || "");
+    const [isBaseSelected, setIsBaseSelected] = useState(false);
 
     const categories = ["Coffee", "Tea", "Juice", "Others"];
+
+    useEffect( () => {
+        setIsBaseSelected(selectedBase.length > 0);
+    }, [selectedBase]);
 
     const handleSelectBase = (category) => {
         const newValue = selectedBase === category ? "" : category;
         setSelectedBase(newValue);
-
-        // Persist immediately to global context
-        setDrinkData(prev => ({
-            ...prev,
-            drinkBase: newValue
-        }));
     }
 
     const handleOnClick = () => {
@@ -63,7 +62,10 @@ function BaseForm () {
                     ))}
                 </div>
             </div>
-            <CircularArrowButton onClick={handleOnClick}/>
+            <CircularArrowButton 
+                disabled={!isBaseSelected}
+                onClick={handleOnClick}
+            />
         </>
     );
 }

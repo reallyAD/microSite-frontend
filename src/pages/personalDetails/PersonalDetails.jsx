@@ -1,4 +1,4 @@
-import React from 'react';
+import {useState, useEffect} from 'react';
 import { useDrinks } from '../../utils/DrinksProvider';
 import BackButton from '../../components/BackButton';
 import TextField from '@mui/material/TextField';
@@ -9,16 +9,25 @@ function PersonalDetails() {
 
     const { drinkData, setDrinkData } = useDrinks();
     const { toDrinkPurpose } = useGoTo();
+    const [isFilled, setIsFilled] = useState(false);
+
+    // Check if the name field is filled 
+    useEffect( () => {
+        const trimmedName = drinkData?.name?.trim() || '';
+        setIsFilled(trimmedName.length > 0);
+    }, [drinkData?.name]);
 
     const handleOnClick = () => {
         toDrinkPurpose();
     }
 
     const handleOnChange = (e) => {
+        const trimmedValue = e.target.value.trim();
         setDrinkData({
             ...drinkData,
             name: e.target.value
         });
+        setIsFilled(trimmedValue.length > 0);
     }
 
     return (
@@ -40,13 +49,22 @@ function PersonalDetails() {
                             width: '100%',
                             marginRight: '4px',
                             '& .MuiOutlinedInput-root': {
+                                '& fieldset': {
+                                    borderColor: isFilled ? '#FF640A' : 'lightgray', // Border color based on isFilled
+                                    borderWidth: isFilled ? '2px' : '1px',
+                                },
+                                '&:hover fieldset': {
+                                    borderColor: isFilled ? '#FF640A' : 'lightgray', // Hover state
+                                },
                                 '&.Mui-focused fieldset': {
-                                    borderColor: '#FF640A', // Focused border color
-                                    borderWidth: '2px'
+                                    borderColor: isFilled ? '#FF640A' : 'lightgray', // Focused state
                                 },
                             },
+                            '& .MuiInputLabel-root': {
+                                color: isFilled ? '#FF640A' : 'inherit', // Label color based on isFilled
+                            },
                             '& .MuiInputLabel-root.Mui-focused': {
-                                color: '#FF640A' // Focused label color
+                                color: isFilled ? '#FF640A' : 'inherit', // Override default blue label when focused
                             },
                         }}
                         onChange={handleOnChange}
@@ -54,9 +72,10 @@ function PersonalDetails() {
                         label="Name"
                         variant="outlined"
                         size="small"
-                        value={drinkData?.name || ""}
+                        value={drinkData?.name || ''}
                     />
                     <CircularArrowButton
+                        disabled={!isFilled}
                         onClick={handleOnClick}
                     />
                 </div>

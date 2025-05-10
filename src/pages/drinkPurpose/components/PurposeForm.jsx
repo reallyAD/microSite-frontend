@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import CircularArrowButton from "../../../components/CircularArrowButton.jsx";
 import {useDrinks} from "../../../utils/DrinksProvider.jsx";
@@ -11,18 +11,17 @@ function PurposeForm() {
     const { drinkData, setDrinkData } = useDrinks();
 
     const [selectedPurpose,  setSelectedPurpose] = useState(drinkData?.purpose || "");
+    const [isPurposeSelected, setIsPurposeSelected] = useState(false);
 
     const categories = ["Retail", "Events", "Branding", "Fun"];
+
+    useEffect( () => {
+        setIsPurposeSelected(selectedPurpose.length > 0);
+    }, [selectedPurpose]);
 
     const handleSelectPurpose = (category) => {
         const newValue = selectedPurpose === category ? "" : category;
         setSelectedPurpose(newValue);
-
-        // Persist immediately to global context
-        setDrinkData(prev => ({
-            ...prev,
-            purpose: newValue
-        }));
     }
 
     const handleOnClick = () => {
@@ -64,7 +63,10 @@ function PurposeForm() {
                     ))}
                 </div>
             </div>
-            <CircularArrowButton onClick={handleOnClick}/>
+            <CircularArrowButton
+                disabled={!isPurposeSelected}
+                onClick={handleOnClick}
+            />
         </>
     );
 }

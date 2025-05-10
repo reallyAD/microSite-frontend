@@ -4,15 +4,21 @@ import { useGoTo } from '../../utils/useGoTo';
 import ResusableButton from '../../components/ReusableButton';
 import LoadingPage from "../../components/LoadingWizard";
 import witch from "../../assets/images/witch.gif"
+import wizard from "../../assets/images/wizard.gif"
 import { useLocation } from 'react-router-dom';
 import orangebottle from '../../assets/images/orangebottle.png';
-import { orange } from '@mui/material/colors';
+import drinkService from '../../api/drinkService.js';
+import { useDrinks } from "../../utils/DrinksProvider.jsx"
 
 function DrinkResultConfirmation() {
 
-    const { toDrinkResultLabel } = useGoTo();
+    const { toDrinkResultLabel , toDrinkResultConfirmation} = useGoTo();
 
     const [isLoading, setIsLoading] = React.useState(false);
+
+    const [isRerolling, setIsRerolling] = React.useState(false);
+    const {drinkData, setDrinkData} = useDrinks();
+    const [ rerolls, setRerolls ] = React.useState(2);
 
     const location = useLocation();
     const generatedDrink = location.state || {};
@@ -21,6 +27,21 @@ function DrinkResultConfirmation() {
         setIsLoading(true);
         await new Promise((resolve) => setTimeout(resolve, 2000));
         toDrinkResultLabel();
+    }
+
+    const handleReroll = async () => {
+      const userDrinkData = drinkData;
+      try {
+        setIsRerolling(true);
+        setRerolls(prev => prev - 1);
+        const gptResponse = await drinkService.generateDrink(userDrinkData);
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        toDrinkResultConfirmation({...gptResponse, reRollId: Date.now()});
+      } catch (error) {
+        console.error('Error generating drink:', error);
+      } finally {
+        setIsRerolling(false);
+      }
     }
 
     const drinkDetails = {
@@ -35,6 +56,9 @@ function DrinkResultConfirmation() {
       return <LoadingPage gif={witch} message="Adding sugar, spice and everything nice" />
     }
 
+    if (isRerolling) {
+      return <LoadingPage gif={wizard} message="We're working our Magic..." /> 
+    }
     // TODO: Dynamically load data from output of chatgpt
     return (
     <>
@@ -76,8 +100,9 @@ function DrinkResultConfirmation() {
             <div className="mt-6 flex flex-col items-center gap-4">
               <div className="flex gap-4 justify-center">
                 <ResusableButton
-                  onClick={handleOnClick}
-                  text="Re-Roll"
+                  disabled={rerolls <= 0}
+                  onClick={handleReroll}
+                  text={`Reroll (${rerolls})`}
                   color="green"
                   width={140}
                   height={40}

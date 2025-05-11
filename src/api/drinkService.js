@@ -20,6 +20,20 @@ const drinkService = {
         } catch (error) {
             console.error("Error generating drink:", error);
         }
+    },
+    refineGeneratedDrink: async (originalGeneratedDrink, refinePrompt) => {
+        try {
+            const response = await apiClient.post(
+                '/refine-generated-drink', 
+                {
+                    originalGeneratedDrink: originalGeneratedDrink, 
+                    refinePrompt: refinePrompt 
+                }
+            );
+            return response.data;
+        } catch (error) {
+            console.error("Error refining generated drink:", error);
+        }
     }
 }
 

@@ -9,6 +9,7 @@ import FlavourProfile from './pages/flavourProfile/FlavourProfile';
 import DrinkResultConfirmation from './pages/drinkResultConfirmation/DrinkResultConfirmation';
 import DrinkResultLabel from './pages/drinkResultLabel/DrinkResultLabel';
 import DrinkResult from './pages/drinkResult/DrinkResult';
+import DrinkRefine from './pages/drinkResultConfirmation/DrinkRefine';
 import Layout from './components/Layout';
 
 
@@ -28,6 +29,7 @@ function App() {
               <Route path="/flavour-profile" element={<FlavourProfile />} />
               <Route path="/drink-result-confirmation" element={<DrinkResultConfirmation />} />
               <Route path="/drink-result-label" element={<DrinkResultLabel />}></Route>
+              <Route path="/drink-result-confirmation/refine" element={<DrinkRefine />}></Route>
             </Routes>
           </Layout>
       </BrowserRouter>

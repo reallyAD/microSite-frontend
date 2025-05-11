@@ -17,7 +17,7 @@ function Layout({ children }) {
   const location = useLocation();
   const path = location.pathname;
 
-  const showProgressBar = path !== '/home' && path !== '/drink-result';
+  const showProgressBar = path !== '/home' && path !== '/drink-result' && path !== '/drink-result-confirmation/refine';
   const currentStep = routeSteps[path] || 1;
 
   console.log('Current Path:', path);

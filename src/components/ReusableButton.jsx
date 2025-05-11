@@ -53,7 +53,9 @@ function ResusableButton({ text, onClick, color, width, height, disabled}) {
               fontWeight: 'bold',
               width: `${width}px`,
               height: `${height}px`,
+              display: 'block'
           }}
+          disabled={disabled}
       >
           {text}
       </Button>

@@ -96,11 +96,10 @@ function DrinkRefine() {
                         </div>
                     </div>
                 </div>
-                <div className="w-2/5 flex flex-col items-center mt-14">
+                <div className="w-2/5 flex flex-col items-left mt-14">
                     <Typography 
                         variant="subtitle1" 
-                        className="mb-2"
-                        sx={{ color: 'white' }}
+                        sx={{ color: 'white', marginBottom: '8px' }}
                     >
                         <p>How would you like to refine your drink?</p>
                     </Typography>
@@ -145,7 +144,7 @@ function DrinkRefine() {
                 <ResusableButton
                     onClick={handleRefineDrink}
                     text="Refine"
-                    color={wordCount === 0 || isOverWordLimit ? "gray" : "green"}
+                    color={"green"}
                     width={288}
                     height={40}
                     disabled={wordCount === 0 || isOverWordLimit}

@@ -14,6 +14,8 @@ export const DrinksProvider = ({ children }) => {
         drinkBase: '',
         flavourProfile: [],
         label: '',
+        refines: 2,
+        rerolls: 2,
       }
 
   const [drinkData, setDrinkData] = useState(DefaultDrinksData);

@@ -12,7 +12,7 @@ import { useDrinks } from "../../utils/DrinksProvider.jsx"
 
 function DrinkResultConfirmation() {
 
-    const { toDrinkResultLabel , toDrinkResultConfirmation} = useGoTo();
+    const { toDrinkResultLabel , toDrinkResultConfirmation, toDrinkRefine } = useGoTo();
 
     const [isLoading, setIsLoading] = React.useState(false);
 
@@ -42,6 +42,15 @@ function DrinkResultConfirmation() {
       } finally {
         setIsRerolling(false);
       }
+    }
+
+    const handleRefine = async () => {
+        try {
+          // Navigate to the refine page with the generated drink
+          toDrinkRefine(generatedDrink);
+        } catch (err) {
+          console.error("Error refining drink:", err);
+        }
     }
 
     const drinkDetails = {
@@ -108,7 +117,7 @@ function DrinkResultConfirmation() {
                   height={40}
                 />
                 <ResusableButton
-                  onClick={handleOnClick}
+                  onClick={handleRefine}
                   text="Refine"
                   color="green"
                   width={140}

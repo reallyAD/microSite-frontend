@@ -16,12 +16,15 @@ function DrinkResultConfirmation() {
 
     const [isLoading, setIsLoading] = React.useState(false);
 
-    const [isRerolling, setIsRerolling] = React.useState(false);
-    const {drinkData, setDrinkData} = useDrinks();
-    const [ rerolls, setRerolls ] = React.useState(2);
-
     const location = useLocation();
     const generatedDrink = location.state || {};
+    
+    const [isRerolling, setIsRerolling] = React.useState(false);
+    const {drinkData, setDrinkData} = useDrinks();
+    const rerolls = drinkData.rerolls;
+    const refines = drinkData.refines;
+
+    
 
     const handleOnClick = async () => {
         setIsLoading(true);
@@ -30,35 +33,41 @@ function DrinkResultConfirmation() {
     }
 
     const handleReroll = async () => {
-      const userDrinkData = drinkData;
       try {
         setIsRerolling(true);
-        setRerolls(prev => prev - 1);
-        const gptResponse = await drinkService.generateDrink(userDrinkData);
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-        toDrinkResultConfirmation({...gptResponse, reRollId: Date.now()});
+        if (rerolls > 0) {
+          setDrinkData({ ...drinkData, rerolls: rerolls - 1 }); // Update context!
+          const userDrinkData = { ...drinkData, rerolls: rerolls - 1 };
+          const gptResponse = await drinkService.generateDrink(userDrinkData);
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+          toDrinkResultConfirmation({ ...gptResponse, reRollId: Date.now(), rerolls: rerolls - 1 });
+        }
       } catch (error) {
         console.error('Error generating drink:', error);
       } finally {
         setIsRerolling(false);
       }
-    }
+    };
 
     const handleRefine = async () => {
-        try {
-          // Navigate to the refine page with the generated drink
-          toDrinkRefine(generatedDrink);
-        } catch (err) {
-          console.error("Error refining drink:", err);
+      try {
+        if (refines > 0) {
+          setDrinkData({ ...drinkData, refines: refines - 1 }); // Update context!
+          // Optionally, navigate after updating context
+          const newRefines = refines - 1;
+          toDrinkRefine({ ...generatedDrink, refines: newRefines });
         }
-    }
+      } catch (err) {
+        console.error("Error refining drink:", err);
+      }
+};
 
     const drinkDetails = {
       drink_name: generatedDrink.drink_name,
       category: generatedDrink.category,  
       description: generatedDrink.description,
-      ingredients: generatedDrink.ingredients.split(',').map(ingredient => ingredient.trim()),
-      taste_profile: generatedDrink.taste_profile.split(',').map(taste => taste.trim()),
+      ingredients: (generatedDrink.ingredients || "").split(',').map(ingredient => ingredient.trim()),
+      taste_profile: (generatedDrink.taste_profile || "").split(',').map(taste => taste.trim()),
     } 
 
     if (isLoading) {
@@ -117,8 +126,9 @@ function DrinkResultConfirmation() {
                   height={40}
                 />
                 <ResusableButton
+                  disabled={refines <= 0}
                   onClick={handleRefine}
-                  text="Refine"
+                  text={`Refine (${refines})`}
                   color="green"
                   width={140}
                   height={40}

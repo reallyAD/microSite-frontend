@@ -17,7 +17,7 @@ function DrinkPurpose() {
         <div className="h-screen text-3xl flex justify-center items-center">
           <div className="flex flex-col items-center">
             <h1 className="font-bold">What is this drink for?</h1>
-            <p className="mt-4">Pick one or more - we'll tailor the drink to match</p>
+            <p className="mt-4">Pick one - we'll tailor the drink to match</p>
             <PurposeForm/>
           </div>
         </div>

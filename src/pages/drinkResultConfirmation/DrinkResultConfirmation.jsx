@@ -88,7 +88,7 @@ function DrinkResultConfirmation() {
         <div className="w-full max-w-4xl flex justify-between">
 
           {/* Left column */}
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center mt-20">
             <span className="font-bold text-3xl">Your Drink</span>
             <img src={orangebottle} alt="Generated Drink" className="w-72 h-auto mt-4 rotate-15" />
             <h2 className="text-3xl font-bold text-deepOrange ">
@@ -97,7 +97,7 @@ function DrinkResultConfirmation() {
           </div>
 
           {/* Right column */}
-          <div className="w-1/2 text-center space-y-10 flex flex-col items-center">
+          <div className="w-1/2 text-center space-y-10 flex flex-col items-center rounded-2xl bg-zinc-900 p-8">
             <div className=" flex flex-col items-center">
               <span className="font-bold text-deepOrange mb-1 text-xl"> Description:</span>
               <span className="mt-1 text-lg">{drinkDetails.description}</span>

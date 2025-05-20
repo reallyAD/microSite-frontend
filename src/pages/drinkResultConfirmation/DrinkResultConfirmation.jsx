@@ -71,11 +71,11 @@ function DrinkResultConfirmation() {
     } 
 
     if (isLoading) {
-      return <LoadingPage gif={witch} message="Adding sugar, spice and everything nice" />
+      return <LoadingPage message="Adding sugar, spice and everything nice" />
     }
 
     if (isRerolling) {
-      return <LoadingPage gif={wizard} message="We're working our Magic..." /> 
+      return <LoadingPage message="We're working our Magic..." /> 
     }
     // TODO: Dynamically load data from output of chatgpt
     return (

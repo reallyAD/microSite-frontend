@@ -204,7 +204,7 @@ function FlavourProfileForm () {
     }
 
     if (isLoading) {
-        return <LoadingPage gif={wizard} message ="We're working our Magic..." />
+        return <LoadingPage message ="We're working our Magic..." />
     }
 
     if (!isInitialised) {

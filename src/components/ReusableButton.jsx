@@ -54,7 +54,6 @@ function ResusableButton({ text, onClick, color, width, height, disabled}) {
               width: `${width}px`,
               height: `${height}px`,
               textTransform: 'none',
-              
           }}
       >
           {text}

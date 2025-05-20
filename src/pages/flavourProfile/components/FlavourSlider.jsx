@@ -14,7 +14,7 @@ function FlavourSlider({ title, value, minLabel, maxLabel, marks, onChangeValue,
                 <Box sx={{ width: 250}}>
                     <Slider
                         onChange={onChangeValue}
-                        marks={marks}
+                        // marks={marks}
                         value={value}
                         min={0}
                         max={100}

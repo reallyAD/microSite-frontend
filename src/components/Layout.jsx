@@ -27,7 +27,7 @@ function Layout({ children }) {
       {showProgressBar && (
         <ProgressBar currentStep={currentStep} totalSteps={8} />
       )}
-      <div className="h-full overflow-hidden">
+      <div className="h-full overflow-y-auto">
         {children}
       </div>
     </div>

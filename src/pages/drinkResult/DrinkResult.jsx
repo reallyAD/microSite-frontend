@@ -74,17 +74,13 @@ function DrinkResult() {
 
     return (
         <>
-            <div className="absolute top-4 left-4 z-10">
-                <BackButton />
-            </div>
-
-            <div className="h-screen bg-black text-white flex items-center justify-center px-4 sm:px-6 md:px-8">
-                <div className="h-3/6 w-full max-w-6xl flex flex-col md:flex-row items-stretch gap-6">
-
+            <BackButton />
+            <div className="h-full flex flex-col items-center justify-center px-4 sm:px-6 md:px-8 py-10 ">
+                <div className="w-full max-w-6xl flex flex-col md:flex-row items-stretch gap-6 md:gap-8 mt-6">
                     {/* Left Panel */}
-                    <div className="w-full md:w-1/2 h-full flex flex-col justify-center items-center p-6 md:p-8 text-center space-y-4">
+                        <div className="w-full md:w-1/2 flex flex-col justify-center items-center p-6 md:p-8 text-center space-y-4">
                         <div>
-                            <p className="text-lg text-zinc-400">Your Drink</p>
+                            <p className="text-lg text-zinc-200">Your Drink</p>
                             <h2 className="text-4xl font-bold text-orange-500">
                                 {drinkDetails.drink_name}
                             </h2>
@@ -93,14 +89,14 @@ function DrinkResult() {
                             <img
                                 src={imageSrc}
                                 alt="Generated Drink"
-                                className="w-72 h-auto transform rotate-[15deg] transition-transform duration-300 hover:scale-110"
+                                className="w-48 sm:w-72 h-auto mt-2 rotate-15"
                             />
                         </div>
                     </div>
 
                     {/* Right Panel */}
-                    <div className="w-full md:w-1/2 h-full flex flex-col justify-center items-center bg-zinc-900 p-6 sm:p-8 md:p-10 rounded-3xl shadow-lg">
-                        <div className="flex flex-col items-center w-full h-full justify-center gap-y-10">
+                    <div className="w-full md:w-1/2 flex flex-col justify-center items-center bg-zinc-900 p-6 sm:p-8 md:p-10 rounded-3xl shadow-lg">
+                        <div className="flex flex-col items-center w-full justify-center gap-y-6 md:gap-y-8">
                             {submissionStatus === 'success' ? (
                                 <div className="text-center text-green-400">
                                     <h2 className="text-xl font-bold mb-2">Thanks!</h2>
@@ -111,8 +107,8 @@ function DrinkResult() {
                                     <h2 className="text-3xl font-bold text-center mb-4 leading-tight">
                                         Let’s make this drink a reality!
                                     </h2>
-                                    <div className="items-center flex flex-col">
-                                        <p className="text-sm text-zinc-300 mb-6 text-center max-w-sm">
+                                    <div className="items-center flex flex-col w-full max-w-md px-2">
+                                        <p className="text-sm text-zinc-300 mb-6 text-center">
                                             Insert your email and we’ll reach out to you within 1–2 working days.
                                         </p>
                                         <TextField
@@ -121,7 +117,7 @@ function DrinkResult() {
                                             size="small"
                                             sx={{
                                                 width: '100%',
-                                                maxWidth: 320,
+                                                maxWidth: '100%',
                                                 mb: 2,
                                                 backgroundColor: 'lightgray',
                                                 borderRadius: '4px',

@@ -314,14 +314,14 @@ export const teaProfiles = [
     {
         title: "Refreshing",
         minLabel: "Soft",
-        maxLabel: "Invigorating",
+        maxLabel: "Lively",
         marks: [
             {
                 label: "Soft",
                 value: 0
             },
             {
-                label: "Invigorating",
+                label: "Lively",
                 value: 100
             }
         ],
@@ -330,7 +330,7 @@ export const teaProfiles = [
             25: "Mildly Cool",
             50: "Balanced",
             75: "Crisp",
-            100: "Invigorating"
+            100: "Lively"
         }
     },
     {
@@ -383,14 +383,14 @@ export const juiceProfiles = [
     {
         title: "Refreshing",
         minLabel: "Soft",
-        maxLabel: "Invigorating",
+        maxLabel: "Lively",
         marks: [
             {
                 label: "Soft",
                 value: 0
             },
             {
-                label: "Invigorating",
+                label: "Lively",
                 value: 100
             }
         ],
@@ -399,7 +399,7 @@ export const juiceProfiles = [
             25: "Mildly Cool",
             50: "Balanced",
             75: "Crisp",
-            100: "Invigorating"
+            100: "Lively"
         }
     },
     {

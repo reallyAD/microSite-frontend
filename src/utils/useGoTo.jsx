@@ -11,8 +11,8 @@ export const useGoTo = () => {
         toFlavourProfile: () => navigate('/flavour-profile'),
         toDrinkResultConfirmation: (generatedDrink) => navigate('/drink-result-confirmation', {state: generatedDrink}),
         toDrinkRefine: (generatedDrink) => navigate('/drink-result-confirmation/refine', {state: generatedDrink}),
-        toDrinkResultLabel: () => navigate('/drink-result-label'),
-        toDrinkResult: () => navigate('/drink-result'),
+        toDrinkResultLabel: (generatedDrink) => navigate('/drink-result-label', {state: generatedDrink}),
+        toDrinkResult: (generatedDrink) => navigate('/drink-result', {state: generatedDrink}),
         goBack: () => navigate(-1), // Goes back by 1 page
     };
 }

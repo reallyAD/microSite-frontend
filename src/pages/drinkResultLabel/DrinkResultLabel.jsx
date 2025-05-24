@@ -1,14 +1,16 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import BackButton from '../../components/BackButton';
 import { useGoTo } from '../../utils/useGoTo';
 import CircularArrowButton from '../../components/CircularArrowButton';
 
 function DrinkResultLabel() {
-
+    const location = useLocation();
+    const generatedDrink = location.state || {};
     const { toDrinkResult } = useGoTo();
 
     const handleOnClick = () => {
-        toDrinkResult();
+        toDrinkResult(generatedDrink);
     }
 
     return (

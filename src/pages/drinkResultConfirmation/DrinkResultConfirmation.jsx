@@ -29,7 +29,7 @@ function DrinkResultConfirmation() {
     const handleOnClick = async () => {
         setIsLoading(true);
         await new Promise((resolve) => setTimeout(resolve, 2000));
-        toDrinkResultLabel();
+        toDrinkResultLabel(generatedDrink);
     }
 
     const handleReroll = async () => {

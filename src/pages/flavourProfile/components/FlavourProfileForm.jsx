@@ -5,7 +5,6 @@ import ReusableButton from "../../../components/ReusableButton.jsx";
 import FlavourSlider from './FlavourSlider.jsx';
 import { drinkBaseFlavourProfiles, defaultFlavourProfile } from './flavourProfileData.jsx';
 import LoadingPage from '../../../components/Loading.jsx';
-import wizard from "../../../assets/images/wizard.gif";
 import drinkService from "../../../api/drinkService.js";
 
 

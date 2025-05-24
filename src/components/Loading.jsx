@@ -9,7 +9,7 @@ const LoadingPage = ({message= 'Processing'}) => {
                 }}
                 size={82}
             />
-            <p className="mt-4 text-lg font-medium">{message}</p>
+            <span className="mt-4 text-xl font-medium">{message}</span>
         </div>
     )
 }

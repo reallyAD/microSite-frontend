@@ -76,11 +76,13 @@ function DrinkResult() {
                         variant='contained'
                         sx={{
                             backgroundColor: isFilled ?  '#FF640A' : 'lightgray',
-                            color: isFilled ? 'white' : 'red',
+                            color: isFilled ? 'black' : 'red',
                             width: '10%',
                             height: '32px',
                             marginTop: '10px',
                             padding: '8px 40px',
+                            textTransform: 'none',
+                            fontWeight: 'bold',
                             '&:hover': {
                                 backgroundColor: isFilled ?  '#A04000' : 'lightgray',
                             },

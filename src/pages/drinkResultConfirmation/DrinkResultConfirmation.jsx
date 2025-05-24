@@ -2,7 +2,7 @@ import React from 'react';
 import BackButton from '../../components/BackButton';
 import { useGoTo } from '../../utils/useGoTo';
 import ResusableButton from '../../components/ReusableButton';
-import LoadingPage from "../../components/LoadingWizard";
+import LoadingPage from "../../components/Loading";
 import witch from "../../assets/images/witch.gif"
 import wizard from "../../assets/images/wizard.gif"
 import { useLocation } from 'react-router-dom';

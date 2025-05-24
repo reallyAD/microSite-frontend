@@ -1,15 +1,28 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import BackButton from '../../components/BackButton';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import orangebottle from '../../assets/images/orangebottle.png';
-import { NoEncryption } from '@mui/icons-material';
+
+// Dynamically import bottle images
+const bottleImages = import.meta.glob('../../assets/images/*.jpg', { eager: true , import: 'default'});
 
 function DrinkResult() {
-    const [isFilled, setIsFilled] = React.useState(false);
+    const [isFilled, setIsFilled] = useState(false);
+    const [imageSrc, setImageSrc] = useState(null);
     const location = useLocation();
     const generatedDrink = location.state || {};
+
+    const bottleImageKey = `../../assets/images/${generatedDrink.bottle_color}.jpg`;
+
+    useEffect(() => {
+        console.log("Bottle Image Key: ", bottleImageKey);
+        if (bottleImages[bottleImageKey]) {
+            setImageSrc(bottleImages[bottleImageKey]);
+        } else {
+            console.error(`Image not found for color: ${generatedDrink.bottle_color}`);
+        }
+    }, [bottleImageKey]);
 
     const handleChange = (e) => {
         const trimmedValue = e.target.value.trim();
@@ -23,6 +36,8 @@ function DrinkResult() {
         category: generatedDrink.category,
         description: generatedDrink.description || "A refreshing twist for your taste buds!",
     };
+
+    
 
     return (
         <>
@@ -43,13 +58,13 @@ function DrinkResult() {
                         </div>
                         <div className="flex-grow flex items-center justify-center mt-2">
                             <img
-                                src={orangebottle}
+                                src={imageSrc}
                                 alt="Generated Drink"
-                                className="w-36 h-auto transform rotate-[15deg] transition-transform duration-300 hover:scale-110"
+                                className="w-72 h-auto transform rotate-[15deg] transition-transform duration-300 hover:scale-110"
                             />
                         </div>
                     </div>
-
+        
                     {/* Right Panel */}
                     <div className="w-full md:w-1/2 h-full flex flex-col justify-center items-center bg-zinc-900 p-6 sm:p-8 md:p-10 rounded-3xl shadow-lg">
                         <div className="flex flex-col items-center w-full h-full justify-center">

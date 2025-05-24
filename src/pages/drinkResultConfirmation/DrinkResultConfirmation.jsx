@@ -1,28 +1,43 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import BackButton from '../../components/BackButton';
 import { useGoTo } from '../../utils/useGoTo';
 import ResusableButton from '../../components/ReusableButton';
 import LoadingPage from "../../components/Loading";
-import witch from "../../assets/images/witch.gif"
-import wizard from "../../assets/images/wizard.gif"
 import { useLocation } from 'react-router-dom';
-import orangebottle from '../../assets/images/orangebottle.png';
 import drinkService from '../../api/drinkService.js';
 import { useDrinks } from "../../utils/DrinksProvider.jsx"
+
+ // Dynamically import bottle images
+ const bottleImages = import.meta.glob('../../assets/images/*.jpg', { eager: true , import: 'default'});
 
 function DrinkResultConfirmation() {
 
     const { toDrinkResultLabel , toDrinkResultConfirmation, toDrinkRefine } = useGoTo();
 
     const [isLoading, setIsLoading] = React.useState(false);
+    const [imageSrc, setImageSrc] = useState(null);
 
     const location = useLocation();
     const generatedDrink = location.state || {};
+
+    console.log("Generated Drink: ", generatedDrink);
     
     const [isRerolling, setIsRerolling] = React.useState(false);
     const {drinkData, setDrinkData} = useDrinks();
     const rerolls = drinkData.rerolls;
     const refines = drinkData.refines;
+
+    const bottleImageKey = `../../assets/images/${generatedDrink.bottle_color}.jpg`;
+    console.log("Bottle Image Key: ", bottleImageKey);
+
+    useEffect(() => {
+      if (bottleImages[bottleImageKey]) {
+        setImageSrc(bottleImages[bottleImageKey]);
+      } else {
+        console.error(`Image not found for color: ${generatedDrink.bottle_color}`);
+    }
+
+    }, [bottleImageKey]);
 
     
 
@@ -39,6 +54,7 @@ function DrinkResultConfirmation() {
           setDrinkData({ ...drinkData, rerolls: rerolls - 1 }); // Update context!
           const userDrinkData = { ...drinkData, rerolls: rerolls - 1 };
           const gptResponse = await drinkService.generateDrink(userDrinkData);
+          console.log("GPT Response from re-roll: ", gptResponse);
           await new Promise((resolve) => setTimeout(resolve, 1000));
           toDrinkResultConfirmation({ ...gptResponse, reRollId: Date.now(), rerolls: rerolls - 1 });
         }
@@ -68,6 +84,7 @@ function DrinkResultConfirmation() {
       description: generatedDrink.description,
       ingredients: (generatedDrink.ingredients || "").split(',').map(ingredient => ingredient.trim()),
       taste_profile: (generatedDrink.taste_profile || "").split(',').map(taste => taste.trim()),
+      bottle_color: generatedDrink.bottle_color,
     } 
 
     if (isLoading) {
@@ -90,7 +107,7 @@ function DrinkResultConfirmation() {
           {/* Left column */}
           <div className="flex flex-col items-center pt-8">
             <span className="font-bold text-3xl">Your Drink</span>
-            <img src={orangebottle} alt="Generated Drink" className="w-72 h-auto mt-4 rotate-15" />
+            <img src={imageSrc} alt="Generated Drink" className="w-72 h-auto mt-4 rotate-15" />
             <h2 className="text-3xl font-bold text-deepOrange mt-8">
               {drinkDetails.drink_name}
             </h2>

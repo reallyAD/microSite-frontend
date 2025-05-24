@@ -1,24 +1,38 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLocation } from "react-router-dom";
 import { TextField, Typography } from '@mui/material';
 import { useGoTo } from '../../utils/useGoTo';
 import drinkService from '../../api/drinkService';
 import BackButton from '../../components/BackButton';
-import orangebottle from '../../assets/images/orangebottle.png';
 import ResusableButton from '../../components/ReusableButton';
 import LoadingPage from "../../components/Loading";
-import wizard from "../../assets/images/wizard.gif";
+
+// Dynamically import bottle images
+const bottleImages = import.meta.glob('../../assets/images/*.jpg', { eager: true , import: 'default'});
 
 function DrinkRefine() {
 
     const { toDrinkResultConfirmation } = useGoTo();
     const location = useLocation();
     const generatedDrink = location.state || {};
+    const [imageSrc, setImageSrc] = useState(null);
 
     const [isLoading, setIsLoading] = useState(false);
     const [refinePrompt, setRefinePrompt] = useState("");
     const [wordCount, setWordCount] = useState(0);
     const MAX_WORDS = 50;
+
+    const bottleImageKey = `../../assets/images/${generatedDrink.bottle_color}.jpg`;
+
+    useEffect(() => {
+      console.log("Bottle Image Key: ", bottleImageKey);
+      if (bottleImages[bottleImageKey]) {
+        setImageSrc(bottleImages[bottleImageKey]);
+      } else {
+        console.error(`Image not found for color: ${generatedDrink.bottle_color}`);
+    }
+
+    }, [bottleImageKey]);
 
     const drinkDetails = {
         drink_name: generatedDrink.drink_name,
@@ -26,6 +40,7 @@ function DrinkRefine() {
         description: generatedDrink.description,
         ingredients: generatedDrink.ingredients.split(',').map(ingredient => ingredient.trim()),
         taste_profile: generatedDrink.taste_profile.split(',').map(taste => taste.trim()),
+        bottle_color: generatedDrink.bottle_color,
     } 
 
     const handleRefinePromptChange = (event) => {
@@ -54,7 +69,7 @@ function DrinkRefine() {
     }
 
     if (isLoading) {
-        return <LoadingPage gif={wizard} message ="We're working our Magic..." />
+        return <LoadingPage message ="We're working our Magic..." />
     }
 
     const isOverWordLimit = wordCount > MAX_WORDS;
@@ -72,7 +87,7 @@ function DrinkRefine() {
                     {/* Left column */}
                     <div className="flex flex-col items-center">
                         <span className="font-bold text-3xl">Your Current Drink</span>
-                        <img src={orangebottle} alt="Generated Drink" className="w-72 h-auto mt-4 rotate-15" />
+                        <img src={imageSrc} alt="Generated Drink" className="w-72 h-auto mt-4 rotate-15" />
                         <h2 className="text-3xl font-bold text-deepOrange ">
                             {drinkDetails.drink_name}
                         </h2>

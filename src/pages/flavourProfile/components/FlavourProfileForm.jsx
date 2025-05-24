@@ -213,52 +213,45 @@ function FlavourProfileForm () {
 
     return (
         <>
-            <div className="mb-14">
-                <div className="text-3xl flex justify-center items-center">
-                    <div className="flex flex-col items-center">
-                        <h1 className="font-bold mb-4">{drinkData.drinkBase || "Others"}</h1>
-                        <h2 className="font-satoshiBold mb-14">Select your flavour profile</h2>
-                    </div>
-                </div>
-                <div className="rounded-2xl p-10 bg-zinc-900 grid grid-cols-2 gap-x-34 gap-y-2">
-                    {currentProfile.map((profile, index) => {
-                        // Ensure the value is always defined by using a default of 0
-                        const sliderValue = flavourProfile[profile.title]?.value ?? 0;
-                        
-                        return (
-                            <FlavourSlider
-                                key={index}
-                                value={sliderValue}
-                                title={profile.title}
-                                minLabel={profile.minLabel}
-                                maxLabel={profile.maxLabel}
-                                marks={profile.marks}
-                                onChangeValue={handleOnChange(profile.title)}
-                                flavourIntensity={profile.flavourIntensity}
-                            />
-                        );
-                    })}
+        <div className="mb-10 w-full flex flex-col items-center">
+            <h1 className="text-2xl sm:text-3xl font-bold mb-2">{drinkData.drinkBase || "Others"}</h1>
+            <h2 className="font-satoshiBold text-lg sm:text-xl text-gray-300">Select your flavour profile</h2>
+        </div>
 
-                </div>
-            </div>
-
-            <div className="flex flex-row justify-center items-center gap-x-4">
-                <ReusableButton
-                    onClick={handleOnRandomise}
-                    text="Surprise me"
-                    color="green"
-                    width={140}
-                    height={36}
+        <div className="rounded-2xl p-4 sm:p-6 bg-zinc-900 w-full max-w-4xl grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-10">
+            {currentProfile.map((profile, index) => {
+            const sliderValue = flavourProfile[profile.title]?.value ?? 0;
+            return (
+                <FlavourSlider
+                key={index}
+                value={sliderValue}
+                title={profile.title}
+                minLabel={profile.minLabel}
+                maxLabel={profile.maxLabel}
+                marks={profile.marks}
+                onChangeValue={handleOnChange(profile.title)}
+                flavourIntensity={profile.flavourIntensity}
                 />
-                <ReusableButton
-                    onClick={handleGenerate}
-                    text="Generate"
-                    color="pink"
-                    width={140}
-                    height={36}
-                />
-            </div>
+            );
+            })}
+        </div>
 
+        <div className="mt-10 flex flex-col sm:flex-row justify-center items-center gap-4">
+            <ReusableButton
+            onClick={handleOnRandomise}
+            text="Surprise me"
+            color="green"
+            width={140}
+            height={36}
+            />
+            <ReusableButton
+            onClick={handleGenerate}
+            text="Generate"
+            color="pink"
+            width={140}
+            height={36}
+            />
+        </div>
         </>
     );
 }

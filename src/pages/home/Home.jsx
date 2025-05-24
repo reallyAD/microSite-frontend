@@ -13,54 +13,42 @@ function Home() {
 
     return (
       <>
-        <div className="h-screen text-3xl flex justify-center items-center">
-          <div className="flex-row flex items-center">
-              {/* Text Row */}
-              <div className="bg-zinc-900 p-10 rounded-2xl transform scale-125">
-                
-
-                {/* Header */}
-                <div className="mb-14">
-                  <h1 className="font-bold text-4xl"> The <span className="text-deepOrange">RAD.</span> </h1>
-                  <h1 className>Drink Experience</h1>
+        <div className="h-screen max-h-full flex flex-col overflow-y-auto justify-center items-center px-4 py-8 md:px-6 lg:px-8 bg-black text-white">
+          <div className="flex flex-col-reverse md:flex-row items-center gap-8 w-full max-w-6xl">
+              <div className="bg-zinc-900 p-6 sm:p-8 md:p-10 rounded-2xl w-full md:w-1/2 text-center md:text-left">
+                <div className="mb-10">
+                  <h1 className="font-bold text-3xl sm:text-4xl">The <span className="text-deepOrange">RAD.</span></h1>
+                  <h2 className="text-xl sm:text-2xl">Drink Experience</h2>
                 </div>
-                
-                {/* Inner text */}
-                <div className="mb-2">
-                  <p>Create a drink that is uniquely yours.</p>
-                  <p>From ingredients to flavour - you're in charge.</p>
-                  <p>At the end, we'll turn it to a real creation.</p>
-                </div>
-                
+                <p className="text-base sm:text-lg mb-2">Create a drink that is uniquely yours.</p>
+                <p className="text-base sm:text-lg mb-2">From ingredients to flavour — you're in charge.</p>
+                <p className="text-base sm:text-lg mb-6">At the end, we'll turn it into a real creation.</p>
                 <Button
                   variant='contained'
                   onClick={handleOnClick}
                   sx={{
-                    backgroundColor: '#FF640A', // dark orange
+                    backgroundColor: '#FF640A',
                     color: '#000000',
-                    '&:hover': {
-                      backgroundColor: '#A04000', // darker on hover
-                    },
-                    marginTop: '24px',
+                    '&:hover': { backgroundColor: '#A04000' },
                     fontWeight: 'bold',
-                    textTransform: 'none'
+                    textTransform: 'none',
+                    padding: '10px 24px',
                   }}
                 >
                   Let's Start
                 </Button>
               </div>
 
-              {/* Image Row */}
-              <div className="flex ml-20">   
-                  <video
-                    autoPlay 
-                    loop
-                    muted
-                    playsInline
-                    className="w-180 h-auto"
-                    >
-                    <source src={whimsicalWizard} type="video/mp4" />
-                  </video>
+              <div className="w-full md:w-1/2 flex justify-center items-center">
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="w-48 sm:w-70 md:w-78 lg:w-180 h-auto rounded-xl shadow-md"
+                >
+                  <source src={whimsicalWizard} type="video/mp4" />
+                </video>
               </div>
           </div>
         </div>

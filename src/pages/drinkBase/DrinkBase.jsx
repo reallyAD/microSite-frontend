@@ -4,26 +4,24 @@ import { useDrinks } from "../../utils/DrinksProvider.jsx";
 import BaseForm from './components/BaseForm.jsx';
 
 function DrinkBase() {
+  const { drinkData } = useDrinks();
 
-    const { drinkData } = useDrinks();
+  useEffect(() => {
+    console.log("DRINK DATA IN DRINK BASE: ", drinkData);
+  }, []);
 
-    useEffect(() => {
-        console.log("DRINK DATA IN DRINK BASE: ", drinkData);
-    }, []);
-
-
-    return (
-      <>
-        <BackButton />
-        <div className="h-screen text-3xl flex justify-center items-center">
-          <div className="flex flex-col items-center">
-            <h1 className="font-bold">What drink are you looking to create?</h1>
-            <p className="mt-4">Pick your base</p>
-            <BaseForm/>
-          </div>
+  return (
+    <>
+      <BackButton />
+      <div className="h-screen flex flex-col items-center justify-center px-4 pt-24 pb-10">
+        <div className="w-full max-w-3xl flex flex-col items-center text-center overflow-y-auto">
+          <h1 className="font-bold text-2xl sm:text-3xl ">What drink are you looking to create?</h1>
+          <p className="mt-4 text-base text-gray-300">Pick your base</p>
+          <BaseForm />
         </div>
-     </>
-    )
-  }
+      </div>
+    </>
+  );
+}
 
-  export default DrinkBase;
+export default DrinkBase;

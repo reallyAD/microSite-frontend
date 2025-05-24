@@ -96,73 +96,75 @@ function DrinkResultConfirmation() {
     }
     // TODO: Dynamically load data from output of chatgpt
     return (
-    <>
-      <BackButton />
+      <>
+        <BackButton />
 
-      <div className="h-screen bg-black text-white p-4 flex flex-col items-center justify-center transform scale-100">
+        <div className="h-screen px-4 pt-24 pb-10 flex flex-col items-center justify-center">
+          <div className="w-full max-w-5xl flex flex-col md:flex-row justify-between gap-8 overflow-y-auto">
 
-        {/* Main content */}
-        <div className="w-full max-w-4xl flex justify-between">
-
-          {/* Left column */}
-          <div className="flex flex-col items-center pt-8">
-            <span className="font-bold text-3xl">Your Drink</span>
-            <img src={imageSrc} alt="Generated Drink" className="w-72 h-auto mt-4 rotate-15" />
-            <h2 className="text-3xl font-bold text-deepOrange mt-8">
-              {drinkDetails.drink_name}
-            </h2>
-          </div>
-
-          {/* Right column */}
-          <div className="w-1/2 text-center space-y-10 flex flex-col items-center rounded-2xl bg-zinc-900 p-8">
-            <div className=" flex flex-col items-center">
-              <span className="font-bold text-deepOrange mb-1 text-xl"> Description:</span>
-              <span className="mt-1 text-lg">{drinkDetails.description}</span>
-            </div>
-
-            <div className="flex justify-center text-sm w-full">
-              <div className="w-1/2 pr-4 flex flex-col items-center">
-                <span className="font-bold text-deepOrange mb-1 text-xl">Ingredients:</span>
-                <span className="text-lg text-center mt-2">{drinkDetails.ingredients.join(', ')}</span>
-              </div>
-              <div className="w-1/2 pl-4 flex flex-col items-center">
-                <span className="font-bold text-deepOrange mb-1 text-xl">Taste Notes:</span>
-                <span className="text-lg text-center mt-2">{drinkDetails.taste_profile.join(', ')}</span>
-              </div>
-            </div>
-
-            {/* Buttons */}
-            <div className="mt-6 flex flex-col items-center gap-4">
-              <div className="flex gap-4 justify-center">
-                <ResusableButton
-                  disabled={rerolls <= 0}
-                  onClick={handleReroll}
-                  text={`Reroll (${rerolls})`}
-                  color="green"
-                  width={140}
-                  height={40}
-                />
-                <ResusableButton
-                  disabled={refines <= 0}
-                  onClick={handleRefine}
-                  text={`Refine (${refines})`}
-                  color="green"
-                  width={140}
-                  height={40}
-                />
-              </div>
-              <ResusableButton
-                onClick={handleOnClick}
-                text="Confirm"
-                color="pink"
-                width={288}
-                height={40}
+            {/* Left column: Drink image & name */}
+            <div className="w-full md:w-1/2 flex flex-col items-center">
+              <h2 className="font-bold text-2xl sm:text-3xl mb-4">Your Drink</h2>
+              <img
+                src={imageSrc}
+                alt="Generated Drink"
+                className="w-32 sm:w-40 md:w-72 h-auto rotate-15 mt-2"
               />
+              <h2 className="text-2xl font-bold text-deepOrange mt-6 text-center">
+                {drinkDetails.drink_name}
+              </h2>
+            </div>
+
+            {/* Right column: Description, Ingredients, Taste, Buttons */}
+            <div className="w-full md:w-1/2 bg-zinc-900 rounded-2xl p-6 sm:p-8 text-center space-y-8">
+              <div>
+                <p className="font-bold text-deepOrange text-lg sm:text-xl mb-1">Description:</p>
+                <p className="text-base sm:text-lg text-gray-200">{drinkDetails.description}</p>
+              </div>
+
+              <div className="flex flex-col sm:flex-row justify-center gap-6 text-sm sm:text-base">
+                <div className="flex-1">
+                  <p className="font-bold text-deepOrange text-lg sm:text-xl mb-1">Ingredients:</p>
+                  <p className="text-gray-200">{drinkDetails.ingredients.join(', ')}</p>
+                </div>
+                <div className="flex-1">
+                  <p className="font-bold text-deepOrange text-lg sm:text-xl mb-1">Taste Notes:</p>
+                  <p className="text-gray-200">{drinkDetails.taste_profile.join(', ')}</p>
+                </div>
+              </div>
+
+              <div className="flex flex-col gap-2 items-center">
+                <div className="flex flex-col sm:flex-row gap-x-2 gap-y-1 justify-center">
+                  <ResusableButton
+                    disabled={rerolls <= 0}
+                    onClick={handleReroll}
+                    text={`Reroll (${rerolls})`}
+                    color="green"
+                    width={140}
+                    height={40}
+                  />
+                  <ResusableButton
+                    disabled={refines <= 0}
+                    onClick={handleRefine}
+                    text={`Refine (${refines})`}
+                    color="green"
+                    width={140}
+                    height={40}
+                  />
+                </div>
+
+                <ResusableButton
+                  onClick={handleOnClick}
+                  text="Confirm"
+                  color="pink"
+                  width={288}
+                  height={40}
+                />
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </>
+      </>
 );
 
   }

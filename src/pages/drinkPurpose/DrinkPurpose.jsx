@@ -14,15 +14,15 @@ function DrinkPurpose() {
     return (
       <>
         <BackButton />
-        <div className="h-screen text-3xl flex justify-center items-center">
-          <div className="flex flex-col items-center">
-            <h1 className="font-bold">What is this drink for?</h1>
-            <p className="mt-4">Pick one - we'll tailor the drink to match</p>
-            <PurposeForm/>
+        <div className="h-screen flex flex-col items-center justify-center px-4 pt-24 pb-10">
+          <div className="w-full max-w-3xl flex flex-col items-center text-center overflow-y-auto">
+            <h1 className="text-3xl font-bold">What is this drink for?</h1>
+            <p className="mt-4 text-base text-gray-300">Pick one – we’ll tailor the drink to match</p>
+            <PurposeForm />
           </div>
         </div>
-     </>
-    )
+      </>
+    );
   }
 
   export default DrinkPurpose;

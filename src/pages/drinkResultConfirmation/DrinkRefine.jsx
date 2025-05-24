@@ -75,97 +75,94 @@ function DrinkRefine() {
     const isOverWordLimit = wordCount > MAX_WORDS;
 
     return (
-        <div className="h-screen bg-black text-white p-4 flex flex-col">
-            <BackButton/> 
-            
-            <div className="flex flex-col items-center justify-center h-full">
-                <h1>Refine Drink</h1>
-                
-                <p>This is your current drink.</p>
-                <div className="w-full max-w-4xl flex justify-between mt-4">
+        <>
+            <BackButton/>
+            <div className="h-screen px-4 pt-24 pb-10">
+                <div className="w-full max-w-5xl mx-auto flex flex-col md:flex-row gap-y-10 md:gap-x-10 items-start justify-center mt-6 overflow-y-auto">
 
                     {/* Left column */}
-                    <div className="flex flex-col items-center">
-                        <span className="font-bold text-3xl">Your Current Drink</span>
-                        <img src={imageSrc} alt="Generated Drink" className="w-72 h-auto mt-4 rotate-15" />
-                        <h2 className="text-3xl font-bold text-deepOrange ">
-                            {drinkDetails.drink_name}
-                        </h2>
+                    <div className="w-full md:w-1/2 flex flex-col items-center text-center">
+                    <h2 className="font-bold text-2xl sm:text-3xl mb-2">Your Current Drink</h2>
+                    <img src={imageSrc} alt="Generated Drink" className="w-48 sm:w-72 h-auto mt-2 rotate-15" />
+                    <h3 className="text-2xl font-bold text-deepOrange mt-4">{drinkDetails.drink_name}</h3>
                     </div>
 
-                    {/* Right column */}
-                    <div className="w-1/2 text-center space-y-10 flex flex-col items-center mt-10">
-                        <div className="flex flex-col items-center">
-                            <span className="font-bold text-deepOrange mb-1 text-xl"> Description:</span>
-                            <span className="mt-1 text-lg">{drinkDetails.description}</span>
+                    {/* Right column: contained */}
+                    <div className="w-full h- md:w-1/2 bg-zinc-900 rounded-2xl p-6 sm:p-8 flex flex-col space-y-6">
+
+                    {/* Description */}
+                    <div className="text-center">
+                        <p className="font-bold text-deepOrange text-lg sm:text-xl mb-2">Description:</p>
+                        <p className="text-base sm:text-lg text-gray-200 leading-relaxed">{drinkDetails.description}</p>
+                    </div>
+
+                    {/* Ingredients + Taste Notes */}
+                    <div className="flex flex-col sm:flex-row gap-y-4 text-sm sm:text-base">
+                        <div className="flex-1">
+                        <p className="font-bold text-deepOrange text-lg sm:text-xl mb-1">Ingredients:</p>
+                        <p className="text-gray-200">{drinkDetails.ingredients.join(', ')}</p>
                         </div>
-                        <div className="flex justify-center text-sm w-full">
-                            <div className="w-1/2 pr-4 flex flex-col items-center">
-                                <span className="font-bold text-deepOrange mb-1 text-xl">Ingredients:</span>
-                                <span className="text-lg text-center mt-2">{drinkDetails.ingredients.join(', ')}</span>
-                            </div>
-                            <div className="w-1/2 pl-4 flex flex-col items-center">
-                                <span className="font-bold text-deepOrange mb-1 text-xl">Taste Notes:</span>
-                                <span className="text-lg text-center mt-2">{drinkDetails.taste_profile.join(', ')}</span>
-                            </div>
+                        <div className="flex-1">
+                        <p className="font-bold text-deepOrange text-lg sm:text-xl mb-1">Taste Notes:</p>
+                        <p className="text-gray-200">{drinkDetails.taste_profile.join(', ')}</p>
                         </div>
                     </div>
-                </div>
-                <div className="w-2/5 flex flex-col items-left mt-14">
-                    <Typography 
-                        variant="subtitle1" 
-                        sx={{ color: 'white', marginBottom: '8px' }}
-                    >
-                        <p>How would you like to refine your drink?</p>
-                    </Typography>
-                    <TextField
+
+                    {/* Refinement Prompt */}
+                    <div className="flex flex-col">
+                        <Typography variant="subtitle1" className="text-white mb-2">
+                        How would you like to refine your drink?
+                        </Typography>
+                        <TextField
                         multiline
                         rows={3}
                         value={refinePrompt}
                         onChange={handleRefinePromptChange}
-                        placeholder="Tell us how you'd like to modify your drink (e.g., more sweetness, less alcohol, add coconut flavor...)"
+                        placeholder="Tell us how you'd like to modify your drink (e.g., more sweetness...)"
                         variant="outlined"
                         fullWidth
                         sx={{
-                            '& .MuiInputBase-input': {
-                                color: 'white',
-                            },
+                            '& .MuiInputBase-input': { color: 'white' },
                             '& .MuiOutlinedInput-root': {
-                                '& fieldset': {
-                                    borderColor: isOverWordLimit ? 'red' : 'rgba(255, 255, 255, 0.5)',
-                                },
-                                '&:hover fieldset': {
-                                    borderColor: isOverWordLimit ? 'red' : 'rgba(255, 255, 255, 0.7)',
-                                },
-                                '&.Mui-focused fieldset': {
-                                    borderColor: isOverWordLimit ? 'red' : '#FF8C42',
-                                },
+                            '& fieldset': {
+                                borderColor: isOverWordLimit ? 'red' : 'rgba(255, 255, 255, 0.5)',
+                            },
+                            '&:hover fieldset': {
+                                borderColor: isOverWordLimit ? 'red' : 'rgba(255, 255, 255, 0.7)',
+                            },
+                            '&.Mui-focused fieldset': {
+                                borderColor: isOverWordLimit ? 'red' : '#FF8C42',
+                            },
                             },
                         }}
-                    />
-                    <Typography 
-                        variant="caption" 
-                        align="right" 
-                        className="w-full mt-1"
-                        sx={{ 
+                        />
+                        <Typography
+                        variant="caption"
+                        className="mt-1"
+                        sx={{
                             color: isOverWordLimit ? 'red' : 'gray',
-                            fontWeight: isOverWordLimit ? 'bold' : 'normal'
+                            fontWeight: isOverWordLimit ? 'bold' : 'normal',
                         }}
-                    >
-                        {wordCount}/{MAX_WORDS} words {isOverWordLimit && "- Please shorten your refinement"}
-                    </Typography>
-                </div>
+                        >
+                        {wordCount}/{MAX_WORDS} words {isOverWordLimit && ' - Please shorten your refinement'}
+                        </Typography>
+                    </div>
 
-                <ResusableButton
-                    onClick={handleRefineDrink}
-                    text="Refine"
-                    color={"green"}
-                    width={288}
-                    height={40}
-                    disabled={wordCount === 0 || isOverWordLimit}
-                />
+                    {/* Refine Button */}
+                        <div className="mt-2 flex justify-center">
+                            <ResusableButton
+                            onClick={handleRefineDrink}
+                            text="Refine"
+                            color="green"
+                            width={288}
+                            height={40}
+                            disabled={wordCount === 0 || isOverWordLimit}
+                            />
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </>
     );
 }
 

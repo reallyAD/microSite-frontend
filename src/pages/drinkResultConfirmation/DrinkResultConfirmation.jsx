@@ -2,7 +2,7 @@ import React from 'react';
 import BackButton from '../../components/BackButton';
 import { useGoTo } from '../../utils/useGoTo';
 import ResusableButton from '../../components/ReusableButton';
-import LoadingPage from "../../components/LoadingWizard";
+import LoadingPage from "../../components/Loading";
 import witch from "../../assets/images/witch.gif"
 import wizard from "../../assets/images/wizard.gif"
 import { useLocation } from 'react-router-dom';
@@ -71,11 +71,11 @@ function DrinkResultConfirmation() {
     } 
 
     if (isLoading) {
-      return <LoadingPage gif={witch} message="Adding sugar, spice and everything nice" />
+      return <LoadingPage message="Adding sugar, spice and everything nice" />
     }
 
     if (isRerolling) {
-      return <LoadingPage gif={wizard} message="We're working our Magic..." /> 
+      return <LoadingPage message="We're working our Magic..." /> 
     }
     // TODO: Dynamically load data from output of chatgpt
     return (
@@ -88,7 +88,7 @@ function DrinkResultConfirmation() {
         <div className="w-full max-w-4xl flex justify-between">
 
           {/* Left column */}
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center mt-20">
             <span className="font-bold text-3xl">Your Drink</span>
             <img src={orangebottle} alt="Generated Drink" className="w-72 h-auto mt-4 rotate-15" />
             <h2 className="text-3xl font-bold text-deepOrange ">
@@ -97,7 +97,7 @@ function DrinkResultConfirmation() {
           </div>
 
           {/* Right column */}
-          <div className="w-1/2 text-center space-y-10 flex flex-col items-center">
+          <div className="w-1/2 text-center space-y-10 flex flex-col items-center rounded-2xl bg-zinc-900 p-8">
             <div className=" flex flex-col items-center">
               <span className="font-bold text-deepOrange mb-1 text-xl"> Description:</span>
               <span className="mt-1 text-lg">{drinkDetails.description}</span>

@@ -7,7 +7,7 @@ function CircularArrowButton({onClick, disabled}) {
     <IconButton
       sx={{
         backgroundColor: disabled ? 'lightgray' : '#FF640A', // Gray background when disabled
-        color: 'white',
+        color: disabled ? 'black' : 'white',
         borderRadius: '50%',
         width: 56,
         height: 56,

@@ -6,7 +6,7 @@ import drinkService from '../../api/drinkService';
 import BackButton from '../../components/BackButton';
 import orangebottle from '../../assets/images/orangebottle.png';
 import ResusableButton from '../../components/ReusableButton';
-import LoadingPage from "../../components/LoadingWizard";
+import LoadingPage from "../../components/Loading";
 import wizard from "../../assets/images/wizard.gif";
 
 function DrinkRefine() {

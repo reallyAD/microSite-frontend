@@ -4,7 +4,7 @@ import { useGoTo } from "../../../utils/useGoTo.jsx";
 import ReusableButton from "../../../components/ReusableButton.jsx";
 import FlavourSlider from './FlavourSlider.jsx';
 import { drinkBaseFlavourProfiles, defaultFlavourProfile } from './flavourProfileData.jsx';
-import LoadingPage from '../../../components/LoadingWizard.jsx';
+import LoadingPage from '../../../components/Loading.jsx';
 import wizard from "../../../assets/images/wizard.gif";
 import drinkService from "../../../api/drinkService.js";
 
@@ -204,7 +204,7 @@ function FlavourProfileForm () {
     }
 
     if (isLoading) {
-        return <LoadingPage gif={wizard} message ="We're working our Magic..." />
+        return <LoadingPage message ="We're working our Magic..." />
     }
 
     if (!isInitialised) {
@@ -214,14 +214,14 @@ function FlavourProfileForm () {
 
     return (
         <>
-            <div className="mb-8">
+            <div className="mb-14">
                 <div className="text-3xl flex justify-center items-center">
                     <div className="flex flex-col items-center">
                         <h1 className="font-bold mb-4">{drinkData.drinkBase || "Others"}</h1>
                         <h2 className="font-satoshiBold mb-14">Select your flavour profile</h2>
                     </div>
                 </div>
-                <div className="grid grid-cols-2 gap-x-34 gap-y-2">
+                <div className="rounded-2xl p-10 bg-zinc-900 grid grid-cols-2 gap-x-34 gap-y-2">
                     {currentProfile.map((profile, index) => {
                         // Ensure the value is always defined by using a default of 0
                         const sliderValue = flavourProfile[profile.title]?.value ?? 0;

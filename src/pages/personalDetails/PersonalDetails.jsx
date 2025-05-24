@@ -34,12 +34,12 @@ function PersonalDetails() {
       <>
         <BackButton />
         <div className="h-screen text-3xl flex justify-center items-center">
-            <div className="flex-col ">
+            <div className="flex-col w-120">
                 <div className="flex flex-col items-center text-center">
-                    <h1 className="text-3xl font-bold">What is your name?</h1>
-                    <p className="mt-4 mb-2 text-lg">Every drink starts with a name</p>
+                    <h1 className="text-3xl font-bold mb-10">What is your name?</h1>
+                    <p className="mb-2 text-lg">Every drink starts with a name</p>
                 </div>
-                <div className="flex flex-row items-center gap-2">
+                <div className="flex flex-row ml-18 items-center gap-2 mt-4">
                     <TextField
                         sx={{
                             backgroundColor: 'lightgray',
@@ -61,7 +61,7 @@ function PersonalDetails() {
                                 },
                             },
                             '& .MuiInputLabel-root': {
-                                color: isFilled ? '#FF640A' : 'inherit', // Label color based on isFilled
+                                color: isFilled ? '#FF640A' : 'black', // Label color based on isFilled
                             },
                             '& .MuiInputLabel-root.Mui-focused': {
                                 color: isFilled ? '#FF640A' : 'inherit', // Override default blue label when focused

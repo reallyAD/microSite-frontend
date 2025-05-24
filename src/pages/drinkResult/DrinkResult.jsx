@@ -3,12 +3,17 @@ import { useLocation } from 'react-router-dom';
 import BackButton from '../../components/BackButton';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import drinkService from '../../api/drinkService';
 
 // Dynamically import bottle images
 const bottleImages = import.meta.glob('../../assets/images/*.jpg', { eager: true , import: 'default'});
 
 function DrinkResult() {
+    const [email, setEmail] = useState('');
     const [isFilled, setIsFilled] = useState(false);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submissionStatus, setSubmissionStatus] = useState('');
+    
     const [imageSrc, setImageSrc] = useState(null);
     const location = useLocation();
     const generatedDrink = location.state || {};
@@ -24,17 +29,45 @@ function DrinkResult() {
         }
     }, [bottleImageKey]);
 
-    const handleChange = (e) => {
-        const trimmedValue = e.target.value.trim();
-        setIsFilled(trimmedValue.length > 0);
-    };
-
-    const handleSubmission = () => {};
 
     const drinkDetails = {
         drink_name: generatedDrink.drink_name || "Unnamed Drink",
         category: generatedDrink.category,
         description: generatedDrink.description || "A refreshing twist for your taste buds!",
+        ingredients: (generatedDrink.ingredients || "").split(',').map(ingredient => ingredient.trim()),
+    };
+
+    const handleEmailChange = (props) => {
+        const value = props.target.value;
+        setEmail(value);
+        const trimmedValue = value.trim();
+        setIsFilled(trimmedValue.length > 0 && /\S+@\S+\.\S+/.test(trimmedValue));
+    }
+
+    const handleSubmission = async () => {
+        if (!isFilled) return;
+
+        setIsSubmitting(true);
+        setSubmissionStatus('');
+
+        try {
+            const emailData = {
+                email: email,
+                drinkName: drinkDetails.drink_name,
+                drinkCategory: drinkDetails.category,
+                drinkDescription: drinkDetails.description,
+                drinkIngredients: drinkDetails.ingredients,
+            };
+
+            await drinkService.sendEmail(emailData);
+            setSubmissionStatus('success');
+            console.log("Email sent successfully:");
+        } catch (error) {
+            setSubmissionStatus('error');
+            console.error("Error sending email:", error.response ? error.response.data : error.message);
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     
@@ -68,70 +101,88 @@ function DrinkResult() {
                     {/* Right Panel */}
                     <div className="w-full md:w-1/2 h-full flex flex-col justify-center items-center bg-zinc-900 p-6 sm:p-8 md:p-10 rounded-3xl shadow-lg">
                         <div className="flex flex-col items-center w-full h-full justify-center gap-y-10">
-                            <h2 className="text-3xl font-bold text-center mb-4 leading-tight">
-                                Let’s make this drink a reality!
-                            </h2>
-                            <div className="items-center flex flex-col">
-                                <p className="text-sm text-zinc-300 mb-6 text-center max-w-sm">
-                                    Insert your email and we’ll reach out to you within 1–2 working days.
-                                </p>
-                                <TextField
-                                    label="Email"
-                                    variant="outlined"
-                                    size="small"
-                                    onChange={handleChange}
-                                    sx={{
-                                        width: '100%',
-                                        maxWidth: 320,
-                                        mb: 2,
-                                        backgroundColor: 'lightgray',
-                                        borderRadius: '4px',
-                                        '& .MuiOutlinedInput-root': {
-                                        '& fieldset': {
-                                            borderColor: isFilled ? '#FF640A' : 'lightgray',
-                                            borderWidth: isFilled ? '2px' : '1px',
-                                        },
-                                        '&:hover fieldset': {
-                                            borderColor: isFilled ? '#FF640A' : 'lightgray',
-                                        },
-                                        '&.Mui-focused fieldset': {
-                                            borderColor: '#FF640A',
-                                        },
-                                        },
-                                        '& .MuiInputLabel-root': {
-                                        color: isFilled ? '#FF640A' : 'black',
-                                        },
-                                        '& .MuiInputLabel-root.Mui-focused': {
-                                        color: '#FF640A',
-                                        },
-                                    }}
-                                    />
-
-                                <Button
-                                    variant="contained"
-                                    onClick={handleSubmission}
-                                    disabled={!isFilled}
-                                    sx={{
-                                        backgroundColor: isFilled ? '#FF640A' : 'lightgray',
-                                        color: isFilled ? 'black' : 'gray',
-                                        fontWeight: 'bold',
-                                        padding: '10px 28px',
-                                        mt: 1,
-                                        borderRadius: '8px',
-                                        fontSize: '0.9rem',
-                                        textTransform: 'none',
-                                        '&:hover': {
-                                            backgroundColor: isFilled ? '#A04000' : 'lightgray',
-                                        },
-                                        '&.Mui-disabled': {
-                                            backgroundColor: 'lightgray',
-                                            color: 'black',
-                                        },
-                                    }}
-                                >
-                                    Submit
-                                </Button>
-                            </div>
+                            {submissionStatus === 'success' ? (
+                                <div className="text-center text-green-400">
+                                    <h2 className="text-xl font-bold mb-2">Thanks!</h2>
+                                    <p>We'll be in touch!</p>
+                                </div>
+                            ) : (
+                                <>
+                                    <h2 className="text-3xl font-bold text-center mb-4 leading-tight">
+                                        Let’s make this drink a reality!
+                                    </h2>
+                                    <div className="items-center flex flex-col">
+                                        <p className="text-sm text-zinc-300 mb-6 text-center max-w-sm">
+                                            Insert your email and we’ll reach out to you within 1–2 working days.
+                                        </p>
+                                        <TextField
+                                            label="Email"
+                                            variant="outlined"
+                                            size="small"
+                                            sx={{
+                                                width: '100%',
+                                                maxWidth: 320,
+                                                mb: 2,
+                                                backgroundColor: 'lightgray',
+                                                borderRadius: '4px',
+                                                '& .MuiOutlinedInput-root': {
+                                                    '& fieldset': {
+                                                        borderColor: isFilled ? '#FF640A' : 'lightgray',
+                                                        borderWidth: isFilled ? '2px' : '1px',
+                                                    },
+                                                    '&:hover fieldset': {
+                                                        borderColor: isFilled ? '#FF640A' : 'lightgray',
+                                                    },
+                                                    '&.Mui-focused fieldset': {
+                                                        borderColor: '#FF640A',
+                                                    },
+                                                    // Ensure input text is visible
+                                                    input: {
+                                                        color: 'black',
+                                                    }
+                                                },
+                                                '& .MuiInputLabel-root': {
+                                                    color: isFilled ? '#FF640A' : 'black',
+                                                },
+                                                '& .MuiInputLabel-root.Mui-focused': {
+                                                    color: '#FF640A',
+                                                },
+                                            }}
+                                            id="email"
+                                            value={email}
+                                            onChange={handleEmailChange}
+                                            error={submissionStatus === 'error'}
+                                        />
+                                        {submissionStatus === 'error' && (
+                                            <p className="text-red-500 text-sm mb-2">Failed to submit. Please check your email</p>
+                                        )}
+                                        <Button
+                                            variant="contained"
+                                            onClick={handleSubmission}
+                                            disabled={!isFilled || isSubmitting}
+                                            sx={{
+                                                backgroundColor: isFilled ? '#FF640A' : 'lightgray',
+                                                color: isFilled ? 'black' : 'gray',
+                                                fontWeight: 'bold',
+                                                padding: '10px 28px',
+                                                mt: 1,
+                                                borderRadius: '8px',
+                                                fontSize: '0.9rem',
+                                                textTransform: 'none',
+                                                '&:hover': {
+                                                    backgroundColor: isFilled ? '#A04000' : 'lightgray',
+                                                },
+                                                '&.Mui-disabled': {
+                                                    backgroundColor: 'lightgray',
+                                                    color: 'black',
+                                                },
+                                            }}
+                                        >
+                                            {isSubmitting ? 'Submitting...' : 'Submit'}
+                                        </Button>
+                                    </div>
+                                </>
+                            )}
                         </div>
                     </div>
                 </div>

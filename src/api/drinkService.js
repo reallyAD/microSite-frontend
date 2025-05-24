@@ -34,7 +34,17 @@ const drinkService = {
         } catch (error) {
             console.error("Error refining generated drink:", error);
         }
+    },
+    sendEmail: async (emailData) => {
+        try {
+            const response = await apiClient.post('/send-email', emailData);
+            return response.data;
+        } catch (error) {
+            console.error("Error sending email:", error);
+            throw error;
+        }
     }
+
 }
 
 export default drinkService;

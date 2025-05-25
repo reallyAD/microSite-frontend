@@ -151,101 +151,112 @@ function DrinkResultLabel() {
     return (
       <>
         <BackButton />
-        <div className="h-screen text-3xl text-bold flex justify-center items-center">
-          <div className="flex flex-col items-center space-y-4">
-            <h1 className="font-bold w-8/12 text-center">To make this uniquely yours, add a label to your drink</h1>
-            
-            <div className="w-full max-w-4xl flex justify-between mt-8">
+        <div className="h-screen flex flex-col items-center px-4 sm:px-6 md:px-8 pt-24 pb-6">
+          <div className="w-full overflow-y-auto max-w-5xl flex flex-col items-center text-center">
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold w-full sm:w-10/12 md:w-8/12 mb-6 sm:mb-8">
+              To make this uniquely yours, add a label to your drink
+            </h1>
 
-              {/* Left column */}
-              <div className="flex flex-col items-center">
-                <span className="font-bold text-2xl">Your Drink</span>
-                <h2 className="text-3xl font-bold text-deepOrange mt-2">
+            <div className="w-full flex flex-col md:flex-row items-center justify-center gap-10 md:gap-8">
+
+              {/* Left Column */}
+              <div className="w-full md:w-1/2 flex flex-col items-center text-center space-y-4">
+                <span className="font-bold text-lg sm:text-xl">Your Drink</span>
+                <h2 className="text-xl sm:text-2xl font-bold text-deepOrange mt-1">
                   {drinkDetails.drink_name}
-                </h2> 
+                </h2>
 
-                {drinkImage.uploadedImage ?
-                  <canvas ref={canvasRef} width={314} height={314} className="rounded-md shadow-lg w-72 h-auto rotate-15 my-4" />
-                  : <img src={imageSrc} alt="Generated Drink" className="w-72 h-auto rotate-15 my-4"/> 
-                }
-                <span className="w-100 text-lg text-offWhite font-geist">{drinkDetails.description}</span>
+                {drinkImage.uploadedImage ? (
+                  <canvas
+                    ref={canvasRef}
+                    width={314}
+                    height={314}
+                    className="rounded-md shadow-lg w-52 sm:w-60 md:w-72 h-auto rotate-15"
+                  />
+                ) : (
+                  <img
+                    src={imageSrc}
+                    alt="Generated Drink"
+                    className="w-52 sm:w-60 md:w-72 h-auto rotate-15"
+                  />
+                )}
+
+                <span className="w-full sm:w-10/12 text-sm sm:text-base text-offWhite font-geist px-2">
+                  {drinkDetails.description}
+                </span>
               </div>
 
-              {/* Right column */}
-              <div className="w-1/2 text-center space-y-10 flex flex-col items-center rounded-2xl bg-zinc-900 p-8">
-                  <input
-                    ref={fileInputRef}
-                    type="file"
-                    accept="image/*"
-                    style={{ display: 'none' }}
-                    onChange={(e) => handleFileSelect(e.target.files)}
-                  />
+              {/* Right Column */}
+              <div className="w-full md:w-1/2 bg-zinc-900 rounded-2xl p-4 sm:p-6 md:p-8 flex flex-col items-center justify-center space-y-6">
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={(e) => handleFileSelect(e.target.files)}
+                />
 
-                  <Dropzone
-                    accept={{ 'image/*': [] }}
-                    maxFiles={1}
-                    onDrop={handleFileSelect}
-                  >
+                <Dropzone accept={{ 'image/*': [] }} maxFiles={1} onDrop={handleFileSelect}>
                   {({ getRootProps, getInputProps }) => (
                     <div
                       {...getRootProps()}
-                      className="mt-2 w-full h-80  border-2 border-dashed border-gray-500 rounded-xl flex justify-center items-center cursor-pointer"
+                      className="w-full h-44 sm:h-60 md:h-72 border-2 border-dashed border-gray-500 rounded-xl flex justify-center items-center cursor-pointer text-center p-4"
                     >
                       <input {...getInputProps()} />
-                      <p>Drag & drop or click to select an image</p>
+                      <p className="text-sm sm:text-base text-gray-400">
+                        Drag & drop or click to select an image
+                      </p>
                     </div>
                   )}
                 </Dropzone>
-                <div className="flex flex-row items-center justify-between gap-x-16">
-                  <div className="flex-col flex items-center justify-between gap-y-4"> 
+
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-x-6 gap-y-4 w-full">
+                  <div className="flex flex-col items-center gap-y-4 w-full sm:w-auto">
                     <ResusableButton
-                      text={"Upload"} 
-                      onClick={handleUploadImage} 
-                      color={"green"} 
-                      width={140} 
-                      height={40} 
+                      text="Upload"
+                      onClick={handleUploadImage}
+                      color="green"
+                      width={160}
+                      height={40}
                       disabled={false}
                     />
-
                     {drinkImage.uploadedImage && (
                       <ResusableButton
-                        text={"Clear"} 
-                        onClick={handleClearImage} 
-                        color={"red"} 
-                        width={140} 
-                        height={40} 
+                        text="Clear"
+                        onClick={handleClearImage}
+                        color="red"
+                        width={160}
+                        height={40}
                         disabled={false}
                       />
                     )}
                   </div>
-                  
+
                   <ResusableButton
-                    text={"Confirm"} 
-                    onClick={handleConfirm} 
-                    color={"green"} 
-                    width={140} 
-                    height={40} 
+                    text="Confirm"
+                    onClick={handleConfirm}
+                    color="green"
+                    width={160}
+                    height={40}
                     disabled={false}
                   />
                 </div>
               </div>
             </div>
 
-            <div className="mt-4">
+            <div className="mt-10">
               <ResusableButton
-                  text={"Skip"} 
-                  onClick={handleNextPage} 
-                  color={"deepOrange"} 
-                  width={50} 
-                  height={40} 
-                  disabled={false}
+                text="Skip"
+                onClick={handleNextPage}
+                color="deepOrange"
+                width={120}
+                height={40}
+                disabled={false}
               />
             </div>
-            
           </div>
         </div>
 
-        {/* Confirmation Modal for Clear */}
         <ConfirmationModal
           isOpen={showClearModal}
           title="Clear Image?"
@@ -256,7 +267,7 @@ function DrinkResultLabel() {
           onCancel={handleCancelClearImage}
           confirmButtonColor="red"
         />
-     </>
+      </>
     )
   }
   

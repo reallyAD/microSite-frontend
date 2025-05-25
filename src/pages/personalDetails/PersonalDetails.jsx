@@ -38,14 +38,14 @@ function PersonalDetails() {
                     <h1 className="text-3xl font-bold mb-10">What is your name?</h1>
                     <p className="mb-2 text-lg">Every drink starts with a name</p>
                 </div>
-                <div className="flex flex-row ml-18 items-center gap-2 mt-4">
+                <div className="flex flex-row items-center justify-center gap-2 mt-4">
                     <TextField
                         sx={{
                             backgroundColor: 'lightgray',
                             borderRadius: 1,
                             display: 'flex',
                             justifyContent: 'center',
-                            width: '100%',
+                            width: '75%',
                             marginRight: '4px',
                             '& .MuiOutlinedInput-root': {
                                 '& fieldset': {
@@ -73,6 +73,8 @@ function PersonalDetails() {
                         size="small"
                         value={drinkData?.name || ''}
                     />
+                </div>
+                <div className="flex justify-center mt-6">
                     <CircularArrowButton
                         disabled={!isFilled}
                         onClick={handleOnClick}

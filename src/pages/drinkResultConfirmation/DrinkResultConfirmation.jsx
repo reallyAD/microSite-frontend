@@ -134,7 +134,7 @@ function DrinkResultConfirmation() {
               </div>
 
               <div className="flex flex-col gap-2 items-center">
-                <div className="flex flex-col sm:flex-row gap-x-2 gap-y-1 justify-center">
+                <div className="flex flex-col sm:flex-row gap-x-2 gap-y-2 justify-center">
                   <ResusableButton
                     disabled={rerolls <= 0}
                     onClick={handleReroll}

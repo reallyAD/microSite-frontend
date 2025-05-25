@@ -8,7 +8,7 @@ import ResusableButton from '../../components/ReusableButton';
 import LoadingPage from "../../components/Loading";
 
 // Dynamically import bottle images
-const bottleImages = import.meta.glob('../../assets/images/*.jpg', { eager: true , import: 'default'});
+const bottleImages = import.meta.glob('../../assets/images/*.png', { eager: true , import: 'default'});
 
 function DrinkRefine() {
 
@@ -22,7 +22,7 @@ function DrinkRefine() {
     const [wordCount, setWordCount] = useState(0);
     const MAX_WORDS = 50;
 
-    const bottleImageKey = `../../assets/images/${generatedDrink.bottle_color}.jpg`;
+    const bottleImageKey = `../../assets/images/${generatedDrink.bottle_color}.png`;
 
     useEffect(() => {
       console.log("Bottle Image Key: ", bottleImageKey);

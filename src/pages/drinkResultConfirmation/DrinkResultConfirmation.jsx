@@ -5,10 +5,10 @@ import ResusableButton from '../../components/ReusableButton';
 import LoadingPage from "../../components/Loading";
 import { useLocation } from 'react-router-dom';
 import drinkService from '../../api/drinkService.js';
-import { useDrinks } from "../../utils/DrinksProvider.jsx"
+import { useDrinks } from "../../utils/DrinksContext.js"
 
  // Dynamically import bottle images
- const bottleImages = import.meta.glob('../../assets/images/*.jpg', { eager: true , import: 'default'});
+ const bottleImages = import.meta.glob('../../assets/images/*.png', { eager: true , import: 'default'});
 
 function DrinkResultConfirmation() {
 
@@ -27,7 +27,7 @@ function DrinkResultConfirmation() {
     const rerolls = drinkData.rerolls;
     const refines = drinkData.refines;
 
-    const bottleImageKey = `../../assets/images/${generatedDrink.bottle_color}.jpg`;
+    const bottleImageKey = `../../assets/images/${generatedDrink.bottle_color}.png`;
     console.log("Bottle Image Key: ", bottleImageKey);
 
     useEffect(() => {

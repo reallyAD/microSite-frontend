@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 // To be changed to the actual API URL
-const API_BASE_URL = "https://microsite-backend.onrender.com";
+// const API_BASE_URL = "https://microsite-backend.onrender.com";
+const API_BASE_URL = "http://localhost:8000"
 
 // Create axios instance
 const apiClient = axios.create({

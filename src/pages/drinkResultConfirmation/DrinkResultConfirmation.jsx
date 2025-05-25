@@ -82,8 +82,6 @@ function DrinkResultConfirmation() {
       drink_name: generatedDrink.drink_name,
       category: generatedDrink.category,  
       description: generatedDrink.description,
-      // ingredients: (generatedDrink.ingredients || "").split(',').map(ingredient => ingredient.trim()),
-      // taste_profile: (generatedDrink.taste_profile || "").split(',').map(taste => taste.trim()),
       ingredients: generatedDrink.ingredients,
       taste_profile: generatedDrink.taste_profile,
       bottle_color: generatedDrink.bottle_color,

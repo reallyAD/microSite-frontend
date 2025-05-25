@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDrinks } from "../../../utils/DrinksProvider.jsx";
+import { useDrinks } from "../../../utils/DrinksContext.js";
 import { useGoTo } from "../../../utils/useGoTo.jsx";
 import ReusableButton from "../../../components/ReusableButton.jsx";
 import FlavourSlider from './FlavourSlider.jsx';

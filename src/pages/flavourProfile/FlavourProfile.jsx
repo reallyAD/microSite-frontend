@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import BackButton from '../../components/BackButton';
 import { useGoTo } from '../../utils/useGoTo';
-import {useDrinks} from "../../utils/DrinksProvider.jsx";
+import {useDrinks} from "../../utils/DrinksContext.js";
 import FlavourProfileForm from './components/FlavourProfileForm.jsx';
 
 function FlavourProfile() {

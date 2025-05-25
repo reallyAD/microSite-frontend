@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import BackButton from '../../components/BackButton';
-import { useDrinks } from "../../utils/DrinksProvider.jsx";
+import { useDrinks } from "../../utils/DrinksContext.js";
 import BaseForm from './components/BaseForm.jsx';
 
 function DrinkBase() {

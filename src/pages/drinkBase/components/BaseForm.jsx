@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
 import CircularArrowButton from "../../../components/CircularArrowButton.jsx";
-import { useDrinks } from "../../../utils/DrinksProvider.jsx";
+import { useDrinks } from "../../../utils/DrinksContext.js";
 import { useGoTo } from "../../../utils/useGoTo.jsx";
 
 function BaseForm() {

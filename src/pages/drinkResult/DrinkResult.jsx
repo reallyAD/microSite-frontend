@@ -20,6 +20,8 @@ function DrinkResult() {
 
     const bottleImageKey = `../../assets/images/${generatedDrink.bottle_color}.jpg`;
 
+    console.log("Generated Drink IN FINAL SCREEN: ", generatedDrink);
+
     useEffect(() => {
         console.log("Bottle Image Key: ", bottleImageKey);
         if (bottleImages[bottleImageKey]) {
@@ -87,7 +89,7 @@ function DrinkResult() {
                         </div>
                         <div className="flex-grow flex items-center justify-center mt-2">
                             <img
-                                src={imageSrc}
+                                src={generatedDrink.labeledBottleImage || imageSrc}
                                 alt="Generated Drink"
                                 className="w-48 sm:w-72 h-auto mt-2 rotate-15"
                             />

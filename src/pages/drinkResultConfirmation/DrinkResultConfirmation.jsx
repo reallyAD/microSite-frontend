@@ -5,7 +5,7 @@ import ResusableButton from '../../components/ReusableButton';
 import LoadingPage from "../../components/Loading";
 import { useLocation } from 'react-router-dom';
 import drinkService from '../../api/drinkService.js';
-import { useDrinks } from "../../utils/DrinksProvider.jsx"
+import { useDrinks } from "../../utils/DrinksContext.js"
 
  // Dynamically import bottle images
  const bottleImages = import.meta.glob('../../assets/images/*.jpg', { eager: true , import: 'default'});

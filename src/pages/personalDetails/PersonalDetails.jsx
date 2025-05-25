@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import { useDrinks } from '../../utils/DrinksProvider';
+import { useDrinks } from '../../utils/DrinksContext.js';
 import BackButton from '../../components/BackButton';
 import TextField from '@mui/material/TextField';
 import CircularArrowButton from '../../components/CircularArrowButton';

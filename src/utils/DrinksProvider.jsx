@@ -1,11 +1,8 @@
-import { createContext, useContext, useState } from 'react';
+import { useState, useEffect } from 'react';
+import { DrinksContext } from './DrinksContext';
 
-// Create a context for the drink data
-const DrinksContext = createContext();
 
-export const useDrinks = () => useContext(DrinksContext);
-
-export const DrinksProvider = ({ children }) => {
+export function DrinksProvider({ children }) {
 
     // Default state for drink data
     const DefaultDrinksData = {
@@ -18,10 +15,22 @@ export const DrinksProvider = ({ children }) => {
         rerolls: 2,
       }
 
+    // Default state for drink image data
+    const DefaultDrinkImage = {
+        uploadedImage: null,
+        labeledBottleImage: null,
+    }
+
   const [drinkData, setDrinkData] = useState(DefaultDrinksData);
+  const [drinkImage, setDrinkImage] = useState(DefaultDrinkImage);
+
+   // Log when drinkImage changes
+   useEffect(() => {
+    console.log("DrinkImage state changed:", drinkImage);
+  }, [drinkImage]); 
 
   return (
-    <DrinksContext.Provider value={{ drinkData, setDrinkData }}>
+    <DrinksContext.Provider value={{ drinkData, setDrinkData, drinkImage, setDrinkImage }}>
       {children}
     </DrinksContext.Provider>
   );

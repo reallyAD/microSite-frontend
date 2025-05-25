@@ -6,7 +6,7 @@ import TextField from '@mui/material/TextField';
 import drinkService from '../../api/drinkService';
 
 // Dynamically import bottle images
-const bottleImages = import.meta.glob('../../assets/images/*.jpg', { eager: true , import: 'default'});
+const bottleImages = import.meta.glob('../../assets/images/*.png', { eager: true , import: 'default'});
 
 function DrinkResult() {
     const [email, setEmail] = useState('');
@@ -18,7 +18,7 @@ function DrinkResult() {
     const location = useLocation();
     const generatedDrink = location.state || {};
 
-    const bottleImageKey = `../../assets/images/${generatedDrink.bottle_color}.jpg`;
+    const bottleImageKey = `../../assets/images/${generatedDrink.bottle_color}.png`;
 
     console.log("Generated Drink IN FINAL SCREEN: ", generatedDrink);
 

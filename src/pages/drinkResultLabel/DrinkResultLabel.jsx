@@ -8,7 +8,7 @@ import ConfirmationModal from './components/ConfirmationModal';
 import { useDrinks } from "../../utils/DrinksContext.js";
 
 // Dynamically import bottle images
-const bottleImages = import.meta.glob('../../assets/images/*.jpg', { eager: true , import: 'default'});
+const bottleImages = import.meta.glob('../../assets/images/*.png', { eager: true , import: 'default'});
 
 function DrinkResultLabel() {
     const location = useLocation();
@@ -22,7 +22,7 @@ function DrinkResultLabel() {
     const canvasRef = useRef(null);
     const fileInputRef = useRef(null);
 
-    const bottleImageKey = `../../assets/images/${generatedDrink.bottle_color}.jpg`;
+    const bottleImageKey = `../../assets/images/${generatedDrink.bottle_color}.png`;
 
     // To set the bottle color
     useEffect(() => {

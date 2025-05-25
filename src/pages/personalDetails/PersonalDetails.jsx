@@ -32,7 +32,7 @@ function PersonalDetails() {
     return (
       <>
         <BackButton />
-        <div className="bg-black min-h-screen w-full flex flex-col justify-center items-center px-4 py-10">
+        <div className="bg-black text-white min-h-screen w-full flex flex-col justify-center items-center px-4 py-10">
             <div className="w-full max-w-md">
                 <div className="flex flex-col items-center text-center">
                     <h1 className="text-3xl font-bold mb-10">What is your name?</h1>

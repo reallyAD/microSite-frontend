@@ -82,8 +82,8 @@ function DrinkResultConfirmation() {
       drink_name: generatedDrink.drink_name,
       category: generatedDrink.category,  
       description: generatedDrink.description,
-      ingredients: (generatedDrink.ingredients || "").split(',').map(ingredient => ingredient.trim()),
-      taste_profile: (generatedDrink.taste_profile || "").split(',').map(taste => taste.trim()),
+      ingredients: generatedDrink.ingredients,
+      taste_profile: generatedDrink.taste_profile,
       bottle_color: generatedDrink.bottle_color,
     } 
 
@@ -125,11 +125,11 @@ function DrinkResultConfirmation() {
               <div className="flex flex-col sm:flex-row justify-center gap-6 text-sm sm:text-base">
                 <div className="flex-1">
                   <p className="font-bold text-deepOrange text-lg sm:text-xl mb-1">Ingredients:</p>
-                  <p className="text-gray-200">{drinkDetails.ingredients.join(', ')}</p>
+                  <p className="text-gray-200">{drinkDetails.ingredients}</p>
                 </div>
                 <div className="flex-1">
                   <p className="font-bold text-deepOrange text-lg sm:text-xl mb-1">Taste Notes:</p>
-                  <p className="text-gray-200">{drinkDetails.taste_profile.join(', ')}</p>
+                  <p className="text-gray-200">{drinkDetails.taste_profile}</p>
                 </div>
               </div>
 

@@ -13,18 +13,6 @@ function ConfirmationModal({
 }) {
   if (!isOpen) return null;
 
-  const getConfirmButtonStyles = () => {
-    switch (confirmButtonColor) {
-      case "red":
-        return "bg-red-600 hover:bg-red-700 text-white";
-      case "green":
-        return "bg-green-600 hover:bg-green-700 text-white";
-      case "blue":
-        return "bg-blue-600 hover:bg-blue-700 text-white";
-      default:
-        return "bg-red-600 hover:bg-red-700 text-white";
-    }
-  };
 
   return (
     <div className="fixed inset-0 backdrop-blur-sm flex items-center justify-center z-50">

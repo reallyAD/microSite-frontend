@@ -111,27 +111,7 @@ function FlavourProfileForm () {
         } catch (error) {
             console.error("Error generating drink:", error);
         }
-    }
-
-    // To deprecate (Replaced by handleGenerate)
-    const handleOnClick = async () => {
-        const structuredFlavourProfile = Object.entries(flavourProfile).map(([category, {intensity, value}]) => ({
-            category,
-            intensity,
-            value
-        }));
- 
-        setDrinkData(prev => ({
-            ...prev,
-            flavourProfile: structuredFlavourProfile
-        }));
-
-        setIsLoading(true);
-        await new Promise((resolve) => setTimeout(resolve, 2000));
-        // Navigate to next page
-        toDrinkResultConfirmation();
-    }
-
+    } 
 
     const handleOnChange = (flavour) => (event, newValue) => {
         console.log(`Slider for ${flavour} changed to`, newValue);

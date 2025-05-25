@@ -99,7 +99,7 @@ function DrinkResultConfirmation() {
       <>
         <BackButton />
 
-        <div className="h-screen px-4 pt-24 pb-10 flex flex-col items-center justify-center">
+        <div className="bg-black text-white h-screen px-4 pt-24 pb-10 flex flex-col items-center justify-center">
           <div className="w-full max-w-5xl flex flex-col md:flex-row justify-between gap-8 overflow-y-auto">
 
             {/* Left column: Drink image & name */}

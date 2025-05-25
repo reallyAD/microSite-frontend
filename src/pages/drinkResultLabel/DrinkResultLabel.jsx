@@ -151,7 +151,7 @@ function DrinkResultLabel() {
     return (
       <>
         <BackButton />
-        <div className="h-screen flex flex-col items-center px-4 sm:px-6 md:px-8 pt-24 pb-6">
+        <div className="bg-black text-white h-screen flex flex-col items-center px-4 sm:px-6 md:px-8 pt-24 pb-6">
           <div className="w-full overflow-y-auto max-w-5xl flex flex-col items-center text-center">
             <h1 className="text-xl sm:text-2xl md:text-3xl font-bold w-full sm:w-10/12 md:w-8/12 mb-6 sm:mb-8">
               To make this uniquely yours, add a label to your drink

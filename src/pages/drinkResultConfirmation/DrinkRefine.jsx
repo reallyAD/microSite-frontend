@@ -77,8 +77,8 @@ function DrinkRefine() {
     return (
         <>
             <BackButton/>
-            <div className="h-screen px-4 pt-24 pb-10">
-                <div className="w-full max-w-5xl mx-auto flex flex-col md:flex-row gap-y-10 md:gap-x-10 items-start justify-center mt-6 overflow-y-auto">
+            <div className="bg-black text-white h-screen px-4 pt-24 pb-10">
+                <div className="w-full max-w-5xl justify-center mx-auto flex flex-col md:flex-row gap-y-10 md:gap-x-10 items-center mt-6 overflow-y-auto">
 
                     {/* Left column */}
                     <div className="w-full md:w-1/2 flex flex-col items-center text-center">

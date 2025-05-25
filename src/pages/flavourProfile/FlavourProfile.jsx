@@ -22,7 +22,7 @@ function FlavourProfile() {
     return (
       <>
         <BackButton />
-        <div className="h-screen w-full flex flex-col pt-24 px-4 pb-6">
+        <div className="bg-black text-white h-screen w-full flex flex-col pt-24 px-4 pb-6">
           <div className="w-full max-w-4xl mx-auto flex flex-col items-center text-center overflow-y-auto">
             <FlavourProfileForm />
           </div>

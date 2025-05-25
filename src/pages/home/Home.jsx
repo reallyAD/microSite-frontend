@@ -18,7 +18,7 @@ function Home() {
               <div className="bg-zinc-900 p-6 sm:p-8 md:p-10 rounded-2xl w-full md:w-1/2 text-center md:text-left">
                 <div className="mb-10">
                   <h1 className="font-bold text-3xl sm:text-4xl">The <span className="text-deepOrange">RAD.</span></h1>
-                  <h2 className="text-xl sm:text-2xl">Drink Experience</h2>
+                  <h2 className="font-bold text-3xl sm:text-4xl">Drink Experience</h2>
                 </div>
                 <p className="text-base sm:text-lg mb-2">Create a drink that is uniquely yours.</p>
                 <p className="text-base sm:text-lg mb-2">From ingredients to flavour — you're in charge.</p>

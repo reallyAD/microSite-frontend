@@ -1,5 +1,5 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import ProgressBar from './ProgressBar';
 
 const routeSteps = {
@@ -15,7 +15,17 @@ const routeSteps = {
 
 function Layout({ children }) {
   const location = useLocation();
+  const navigate = useNavigate();
   const path = location.pathname;
+
+  useEffect( () => {
+    const navigationEntries = performance.getEntriesByType('navigation');
+    if (navigationEntries.length > 0 && navigationEntries[0].type === "reload") {
+      if (path !== '/home'){
+        navigate('/home', { replace: true });
+      }
+    }
+  },[])
 
   const showProgressBar = path !== '/home' && path !== '/drink-result' && path !== '/drink-result-confirmation/refine';
   const currentStep = routeSteps[path] || 1;

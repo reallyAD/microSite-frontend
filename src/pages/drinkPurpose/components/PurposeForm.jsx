@@ -51,6 +51,7 @@ function PurposeForm() {
                 height: '56px',
                 width: '140px',
                 borderRadius: '8px',
+                textTransform: 'none',
               }}
             >
               {category}

@@ -46,8 +46,6 @@ export const defaultFlavourProfile = {
 export const coffeeProfiles = [
     {
         title: "Chocolatey",
-        minLabel: "Subtle",
-        maxLabel: "Rich",
         marks: [
             {
                 label: "Subtle",
@@ -59,17 +57,15 @@ export const coffeeProfiles = [
             }
         ],
         flavourIntensity: {
-            0: "Subtle",
-            25: "Less Subtle",
+            0: "Not Chocolatey",
+            25: "Mildly Chocolatey",
             50: "Balanced",
-            75: "Less Rich",
-            100: "Rich"
+            75: "Chocolatey",
+            100: "More Chocolatey"
         }
     },
     {
         title: "Acidity",
-        minLabel: "Smooth",
-        maxLabel: "Zesty",
         marks: [
             {
                 label: "Smooth",
@@ -81,17 +77,15 @@ export const coffeeProfiles = [
             }
         ],
         flavourIntensity: {
-            0: "Smooth",
-            25: "Less Smooth",
+            0: "Not Acidic",
+            25: "Mildly Acidic",
             50: "Balanced",
-            75: "Less Zesty",
-            100: "Zesty"
+            75: "Acidic",
+            100: "More Acidic"
         }
     },
     {
         title: "Nutty",
-        minLabel: "Hints",
-        maxLabel: "Roasted",
         marks: [
             {
                 label: "Hints",
@@ -103,17 +97,15 @@ export const coffeeProfiles = [
             }
         ],
         flavourIntensity: {
-            0: "Hints",
-            25: "Less Hints",
+            0: "Not Nutty",
+            25: "Mildly Nutty",
             50: "Balanced",
-            75: "Less Roasted",
-            100: "Roasted"
+            75: "Nutty",
+            100: "More Nutty"
         }
     },
     {
         title: "Floral",
-        minLabel: "Delicate",
-        maxLabel: "Fragrant",
         marks: [
             {
                 label: "Delicate",
@@ -125,17 +117,15 @@ export const coffeeProfiles = [
             }
         ],
         flavourIntensity: {
-            0: "Delicate",
-            25: "Less Delicate",
+            0: "Not Floral",
+            25: "Mildly Floral",
             50: "Balanced",
-            75: "Less Fragrant",
-            100: "Fragrant"
+            75: "Floral",
+            100: "More Floral"
         }
     },
     {
         title: "Fruity",
-        minLabel: "Light",
-        maxLabel: "Juicy",
         marks: [
             {
                 label: "Light",
@@ -147,17 +137,15 @@ export const coffeeProfiles = [
             }
         ],
         flavourIntensity: {
-            0: "Light",
-            25: "Less Light",
-            50: "Balance",
-            75: "Less Juicy",
-            100: "Fragrant"
+            0: "Not Fruity",
+            25: "Mildly Fruity",
+            50: "Balanced",
+            75: "Fruity",
+            100: "More Fruity"
         }
     },
     {
         title: "Sweet",
-        minLabel: "Subtle",
-        maxLabel: "Sweet",
         marks: [
             {
                 label: "Subtle",
@@ -169,17 +157,15 @@ export const coffeeProfiles = [
             }
         ],
         flavourIntensity: {
-            0: "Subtle",
-            25: "Less Subtle",
+            0: "Not Sweet",
+            25: "Mildly Sweet",
             50: "Balanced",
-            75: "Less Sweet",
-            100: "Sweet"
+            75: "Sweet",
+            100: "More Sweet"
         }
     },
     {
         title: "Creamy",
-        minLabel: "Light",
-        maxLabel: "Lush",
         marks: [
             {
                 label: "Light",
@@ -191,11 +177,11 @@ export const coffeeProfiles = [
             }
         ],
         flavourIntensity: {
-            0: "Light",
-            25: "Smooth",
+            0: "Not Creamy",
+            25: "Mildly Creamy",
             50: "Balanced",
-            75: "Velvety",
-            100: "Lush"
+            75: "Creamy",
+            100: "More Creamy"
         }
     }
 ];
@@ -203,8 +189,6 @@ export const coffeeProfiles = [
 export const teaProfiles = [
     {
         title: "Floral",
-        minLabel: "Delicate",
-        maxLabel: "Fragrant",
         marks: [
             {
                 label: "Delicate",
@@ -216,17 +200,15 @@ export const teaProfiles = [
             }
         ],
         flavourIntensity: {
-            0: "Delicate",
-            25: "Less Delicate",
+            0: "Not Floral",
+            25: "Mildly Floral",
             50: "Balanced",
-            75: "Less Fragrant",
-            100: "Fragrant"
+            75: "Floral",
+            100: "More Floral"
         }
     },
     {
         title: "Fruity",
-        minLabel: "Light",
-        maxLabel: "Juicy",
         marks: [
             {
                 label: "Light",
@@ -238,17 +220,15 @@ export const teaProfiles = [
             }
         ],
         flavourIntensity: {
-            0: "Light",
-            25: "Less Light",
-            50: "Balance",
-            75: "Less Juicy",
-            100: "Fragrant"
+            0: "Not Fruity",
+            25: "Mildly Fruity",
+            50: "Balanced",
+            75: "Fruity",
+            100: "More Fruity"
         }
     },
     {
         title: "Sweet",
-        minLabel: "Subtle",
-        maxLabel: "Sweet",
         marks: [
             {
                 label: "Subtle",
@@ -260,17 +240,15 @@ export const teaProfiles = [
             }
         ],
         flavourIntensity: {
-            0: "Subtle",
-            25: "Less Subtle",
+            0: "Not Sweet",
+            25: "Mildly Sweet",
             50: "Balanced",
-            75: "Less Sweet",
-            100: "Sweet"
+            75: "Sweet",
+            100: "More Sweet"
         }
     },
     {
         title: "Herbaceous",
-        minLabel: "Mild",
-        maxLabel: "Strong",
         marks: [
             {
                 label: "Mild",
@@ -282,17 +260,15 @@ export const teaProfiles = [
             }
         ],
         flavourIntensity: {
-            0: "Mild",
-            25: "Hints of Herbs",
+            0: "Not Herbal",
+            25: "Mildly Herbal",
             50: "Balanced",
-            75: "Distinctly Herbal",
-            100: "Strong"
+            75: "Herbal",
+            100: "More Herbal"
         }
     },
     {
         title: "Earthy",
-        minLabel: "Light",
-        maxLabel: "Mossy",
         marks: [
             {
                 label: "Light",
@@ -304,17 +280,15 @@ export const teaProfiles = [
             }
         ],
         flavourIntensity: {
-            0: "Light",
-            25: "Earth-Tinged",
+            0: "Not Earthy",
+            25: "Mildly Earthy",
             50: "Balanced",
-            75: "Deep Earthiness",
-            100: "Mossy"
+            75: "Earthy",
+            100: "More Earthy"
         }
     },
     {
         title: "Refreshing",
-        minLabel: "Soft",
-        maxLabel: "Lively",
         marks: [
             {
                 label: "Soft",
@@ -326,17 +300,15 @@ export const teaProfiles = [
             }
         ],
         flavourIntensity: {
-            0: "Soft",
-            25: "Mildly Cool",
+            0: "Not Refreshing",
+            25: "Mildly Refreshing",
             50: "Balanced",
-            75: "Crisp",
-            100: "Lively"
+            75: "Refreshing",
+            100: "More Refreshing"
         }
     },
     {
         title: "Creamy",
-        minLabel: "Light",
-        maxLabel: "Heavy",
         marks: [
             {
                 label: "Light",
@@ -348,11 +320,11 @@ export const teaProfiles = [
             }
         ],
         flavourIntensity: {
-            0: "Light",
-            25: "Smooth",
+            0: "Not Creamy",
+            25: "Mildly Creamy",
             50: "Balanced",
-            75: "Soft Creaminess",
-            100: "Heavy"
+            75: "Creamy",
+            100: "More Creamy"
         }
     }
 ];
@@ -360,8 +332,6 @@ export const teaProfiles = [
 export const juiceProfiles = [
     {
         title: "Sweet",
-        minLabel: "Subtle",
-        maxLabel: "Sweet",
         marks: [
             {
                 label: "Subtle",
@@ -373,17 +343,15 @@ export const juiceProfiles = [
             }
         ],
         flavourIntensity: {
-            0: "Subtle",
-            25: "Less Subtle",
+            0: "Not Sweet",
+            25: "Mildly Sweet",
             50: "Balanced",
-            75: "Less Sweet",
-            100: "Sweet"
+            75: "Sweet",
+            100: "More Sweet"
         }
     }, 
     {
         title: "Refreshing",
-        minLabel: "Soft",
-        maxLabel: "Lively",
         marks: [
             {
                 label: "Soft",
@@ -395,17 +363,15 @@ export const juiceProfiles = [
             }
         ],
         flavourIntensity: {
-            0: "Soft",
-            25: "Mildly Cool",
+            0: "Not Refreshing",
+            25: "Mildly Refreshing",
             50: "Balanced",
-            75: "Crisp",
-            100: "Lively"
+            75: "Refreshing",
+            100: "More Refreshing"
         }
     },
     {
         title: "Earthy",
-        minLabel: "Light",
-        maxLabel: "Mossy",
         marks: [
             {
                 label: "Light",
@@ -417,17 +383,15 @@ export const juiceProfiles = [
             }
         ],
         flavourIntensity: {
-            0: "Light",
-            25: "Vegetal",
+            0: "Not Earthy",
+            25: "Mildly Earthy",
             50: "Balanced",
-            75: "Deep",
-            100: "Mossy"
+            75: "Earthy",
+            100: "More Earthy"
         }
     },
     {
         title: "Tangy",
-        minLabel: "Mild",
-        maxLabel: "Zingy",
         marks: [
             {
                 label: "Mild",
@@ -439,17 +403,15 @@ export const juiceProfiles = [
             }
         ],
         flavourIntensity: {
-            0: "Mild",
-            25: "Slight Tang",
+            0: "Not Tangy",
+            25: "Mildly Tangy",
             50: "Balanced",
             75: "Tangy",
-            100: "Zingy"
+            100: "More Tangy"
         }
     },
     {
         title: "Spicy",
-        minLabel: "Warm",
-        maxLabel: "Fiery",
         marks: [
             {
                 label: "Warm",
@@ -461,17 +423,15 @@ export const juiceProfiles = [
             }
         ],
         flavourIntensity: {
-            0: "Warm",
-            25: "Mild Heat",
-            50: "Spiced",
-            75: "Bold",
-            100: "Fiery"
+            0: "Not Spicy",
+            25: "Mildly Spicy",
+            50: "Balanced",
+            75: "Spicy",
+            100: "More Spicy"
         }
     },
     {
         title: "Tart",
-        minLabel: "Soft",
-        maxLabel: "Sharp",
         marks: [
             {
                 label: "Soft",
@@ -483,11 +443,11 @@ export const juiceProfiles = [
             }
         ],
         flavourIntensity: {
-            0: "Soft",
-            25: "Hint of Tartness",
+            0: "Not Tart",
+            25: "Mildly Tart",
             50: "Balanced",
             75: "Tart",
-            100: "Sharp"
+            100: "More Tart"
         }
     }
 ];
@@ -495,8 +455,6 @@ export const juiceProfiles = [
 export const othersProfile = [
     {
         title: "Sweet",
-        minLabel: "Subtle",
-        maxLabel: "Sweet",
         marks: [
             {
                 label: "Subtle",
@@ -508,17 +466,15 @@ export const othersProfile = [
             }
         ],
         flavourIntensity: {
-            0: "Subtle",
-            25: "Lightly Sweet",
+            0: "Not Sweet",
+            25: "Mildly Sweet",
             50: "Balanced",
-            75: "Sugary",
-            100: "Sweet"
+            75: "Sweet",
+            100: "More Sweet"
         }
     },
     {
         title: "Fruity",
-        minLabel: "Hint",
-        maxLabel: "Juicy",
         marks: [
             {
                 label: "Hint",
@@ -530,17 +486,15 @@ export const othersProfile = [
             }
         ],
         flavourIntensity: {
-            0: "Hint",
-            25: "Mild Fruit",
+            0: "Not Fruity",
+            25: "Mildly Fruity",
             50: "Balanced",
-            75: "Bright",
-            100: "Juicy"
+            75: "Fruity",
+            100: "More Fruity"
         }
     },
     {
         title: "Floral",
-        minLabel: "Delicate",
-        maxLabel: "Fragrant",
         marks: [
             {
                 label: "Delicate",
@@ -552,17 +506,15 @@ export const othersProfile = [
             }
         ],
         flavourIntensity: {
-            0: "Delicate",
-            25: "Aromatic Hint",
+            0: "Not Floral",
+            25: "Mildly Floral",
             50: "Balanced",
-            75: "Flowery",
-            100: "Fragrant"
+            75: "Floral",
+            100: "More Floral"
         }
     },
     {
         title: "Earthy",
-        minLabel: "Light",
-        maxLabel: "Rooted",
         marks: [
             {
                 label: "Light",
@@ -574,17 +526,15 @@ export const othersProfile = [
             }
         ],
         flavourIntensity: {
-            0: "Light",
-            25: "Vegetal",
+            0: "Not Earthy",
+            25: "Mildly Earthy",
             50: "Balanced",
-            75: "Deep",
-            100: "Rooted"
+            75: "Earthy",
+            100: "More Earthy"
         }
     },
     {
         title: "Creamy",
-        minLabel: "Light",
-        maxLabel: "Velvety",
         marks: [
             {
                 label: "Light",
@@ -596,17 +546,15 @@ export const othersProfile = [
             }
         ],
         flavourIntensity: {
-            0: "Light",
-            25: "Smooth",
+            0: "Not Creamy",
+            25: "Mildly Creamy",
             50: "Balanced",
-            75: "Full-Bodied",
-            100: "Velvety"
+            75: "Creamy",
+            100: "More Creamy"
         }
     },
     {
         title: "Refreshing",
-        minLabel: "Soft",
-        maxLabel: "Crisp",
         marks: [
             {
                 label: "Soft",
@@ -618,11 +566,11 @@ export const othersProfile = [
             }
         ],
         flavourIntensity: {
-            0: "Soft",
-            25: "Cooling",
+            0: "Not Refreshing",
+            25: "Mildly Refreshing",
             50: "Balanced",
-            75: "Hydrating",
-            100: "Crisp"
+            75: "Refreshing",
+            100: "More Refreshing"
         }
     },
 ];

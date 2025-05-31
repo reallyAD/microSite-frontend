@@ -14,6 +14,7 @@ function FlavourProfileForm () {
     const { drinkData, setDrinkData } = useDrinks();
     const [isLoading, setIsLoading] = React.useState(false);
     const [isInitialised, setIsInitialised] = useState(false);
+    const [showAllTooltips, setShowAllTooltips] = useState(false);
 
     // Get current drink base from drinkData
     const currDrinkBase = drinkData?.drinkBase || "Others";
@@ -180,6 +181,11 @@ function FlavourProfileForm () {
             ...prev,
             flavourProfile: structuredFlavourProfile
         }));
+
+        setShowAllTooltips(true);
+        setTimeout(() => {
+            setShowAllTooltips(false);
+        }, 2000); // Hide tooltips after 3 seconds
     }
 
     if (isLoading) {
@@ -206,11 +212,10 @@ function FlavourProfileForm () {
                 key={index}
                 value={sliderValue}
                 title={profile.title}
-                minLabel={profile.minLabel}
-                maxLabel={profile.maxLabel}
                 marks={profile.marks}
                 onChangeValue={handleOnChange(profile.title)}
                 flavourIntensity={profile.flavourIntensity}
+                showTooltips={showAllTooltips}
                 />
             );
             })}
@@ -219,7 +224,7 @@ function FlavourProfileForm () {
         <div className="mt-10 flex flex-col sm:flex-row justify-center items-center gap-4">
             <ReusableButton
             onClick={handleOnRandomise}
-            text="Surprise me"
+            text="Random!"
             color="green"
             width={140}
             height={36}

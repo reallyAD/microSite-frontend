@@ -89,6 +89,8 @@ function FlavourProfileForm () {
         console.log("DRINK DATA IN FLAVOUR PROFILE FORM: ", drinkData);
     }, [drinkData]);
 
+    const areAllSlidersZero = Object.values(flavourProfile).every(profile => profile.value === 0)
+
     const findClosestIntensityValue = (value, validValues) => {
         return validValues.reduce((prev, curr) => {
             return Math.abs(curr - value) < Math.abs(prev - value) ? curr : prev;
@@ -235,6 +237,7 @@ function FlavourProfileForm () {
             color="pink"
             width={140}
             height={36}
+            disabled={areAllSlidersZero}
             />
         </div>
         </>

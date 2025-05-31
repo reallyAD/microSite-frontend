@@ -18,6 +18,7 @@ function DrinkResultLabel() {
 
     const [imageSrc, setImageSrc] = useState(null);
     const [showClearModal, setShowClearModal] = useState(false);
+    const [labelApplied, setLabelApplied] = useState(false);
 
     const canvasRef = useRef(null);
     const fileInputRef = useRef(null);
@@ -68,6 +69,8 @@ function DrinkResultLabel() {
           const labelWidth = 76;
           const labelHeight = 98;
           ctx.drawImage(labelImg, labelX, labelY, labelWidth, labelHeight);
+          setLabelApplied(true);
+          setTimeout(() => setLabelApplied (false), 2000)
         };
       };
     }, [imageSrc, drinkImage.uploadedImage]);
@@ -157,22 +160,23 @@ function DrinkResultLabel() {
               To make this uniquely yours, add a label to your drink
             </h1>
 
-            <div className="w-full flex flex-col md:flex-row items-center justify-center gap-10 md:gap-8">
+            <div className="w-full flex flex-col md:flex-row items-center justify-center">
 
               {/* Left Column */}
               <div className="w-full md:w-1/2 flex flex-col items-center text-center space-y-4">
-                <span className="font-bold text-lg sm:text-xl">Your Drink</span>
                 <h2 className="text-xl sm:text-2xl font-bold text-deepOrange mt-1">
                   {drinkDetails.drink_name}
                 </h2>
 
                 {drinkImage.uploadedImage ? (
-                  <canvas
-                    ref={canvasRef}
-                    width={314}
-                    height={314}
-                    className="rounded-md shadow-lg w-52 sm:w-60 md:w-72 h-auto rotate-15"
-                  />
+                  <div className={`transition duration-700 ${labelApplied ? 'ring-2 ring-green-400 ring-offset-2 animate-pulse' : ''}`}>
+                    <canvas
+                      ref={canvasRef}
+                      width={314}
+                      height={314}
+                      className="rounded-md shadow-lg w-52 sm:w-60 md:w-72 h-auto rotate-15"
+                    />
+                  </div>
                 ) : (
                   <img
                     src={imageSrc}

@@ -133,10 +133,10 @@ function DrinkRefine() {
                                     '& .MuiInputBase-input': { color: 'white' },
                                     '& .MuiOutlinedInput-root': {
                                         '& fieldset': {
-                                            borderColor: isOverWordLimit ? 'red' : 'rgba(255, 255, 255, 0.5)',
+                                            borderColor: isOverWordLimit ? 'red' : '#FF640A', // Changed to deepOrange for consistency
                                         },
                                         '&:hover fieldset': {
-                                            borderColor: isOverWordLimit ? 'red' : 'rgba(255, 255, 255, 0.7)',
+                                            borderColor: isOverWordLimit ? 'red' : '#FF640A',
                                         },
                                         '&.Mui-focused fieldset': {
                                             borderColor: isOverWordLimit ? 'red' : '#FF640A', // Changed to deepOrange for consistency

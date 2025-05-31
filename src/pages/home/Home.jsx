@@ -13,7 +13,7 @@ function Home() {
 
     return (
       <>
-        <div className="h-screen max-h-full flex flex-col overflow-y-auto justify-center items-center px-4 py-8 md:px-6 lg:px-8 bg-black text-white">
+        <div className="h-screen max-h-full flex flex-col justify-center items-center px-4 py-8 md:px-6 lg:px-8 bg-black text-white">
           <div className="flex flex-col-reverse md:flex-row items-center gap-8 w-full max-w-6xl">
               <div className="bg-zinc-900 p-6 sm:p-8 md:p-10 rounded-2xl w-full md:w-1/2 text-center md:text-left">
                 <div className="mb-10">

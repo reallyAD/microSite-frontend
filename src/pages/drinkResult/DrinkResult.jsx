@@ -1,9 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useGoTo } from '../../utils/useGoTo';
 import BackButton from '../../components/BackButton';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import drinkService from '../../api/drinkService';
+import RestartAltIcon from '@mui/icons-material/RestartAlt';
+import { IconButton } from '@mui/material';
+
 
 // Dynamically import bottle images
 const bottleImages = import.meta.glob('../../assets/images/*.png', { eager: true , import: 'default'});
@@ -21,6 +25,8 @@ function DrinkResult() {
     const bottleImageKey = `../../assets/images/${generatedDrink.bottle_color}.png`;
 
     console.log("Generated Drink IN FINAL SCREEN: ", generatedDrink);
+
+    const { toHome } = useGoTo();
 
     useEffect(() => {
         console.log("Bottle Image Key: ", bottleImageKey);
@@ -44,6 +50,10 @@ function DrinkResult() {
         setEmail(value);
         const trimmedValue = value.trim();
         setIsFilled(trimmedValue.length > 0 && /\S+@\S+\.\S+/.test(trimmedValue));
+    }
+
+    const handleGoHome = () => {
+        toHome();
     }
 
     const handleSubmission = async () => {
@@ -97,8 +107,8 @@ function DrinkResult() {
                     </div>
 
                     {/* Right Panel */}
-                    <div className="w-full md:w-3/4 flex flex-col justify-center items-center bg-zinc-900 p-6 sm:p-8 md:p-10 rounded-3xl shadow-lg">
-                        <div className="flex flex-col items-center w-full justify-center gap-y-6 md:gap-y-8">
+                    <div className="w-full md:w-3/4 flex flex-col items-center bg-zinc-900 p-6 sm:p-8 md:p-10 rounded-3xl shadow-lg">
+                        <div className="flex flex-col justify-center items-center h-full w-full">
                             {submissionStatus === 'success' ? (
                                 <div className="text-left flex flex-col gap-y-10">
                                     <div className="flex flex-col gap-y-2 ">
@@ -115,9 +125,23 @@ function DrinkResult() {
                                             target="_blank" 
                                             rel="noopener noreferrer"
                                         >
-                                            <span className="text-green">Tell us what you think!</span>
+                                            <span className="text-green underline">Tell us what you think!</span>
                                         </a>
                                     </p>
+                                    <div className="flex flex-row justify-center">
+                                        <IconButton
+                                            onClick={handleGoHome}
+                                            size="large"
+                                            sx={{ 
+                                                color: '#FFB4F0',
+                                                '&:hover': {
+                                                    backgroundColor: 'rgba(255, 180, 240, 0.1)',
+                                                },
+                                            }}
+                                        >
+                                            <RestartAltIcon />
+                                        </IconButton>
+                                    </div>
                                 </div>
                             ) : (
                                 <>

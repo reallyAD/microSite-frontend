@@ -104,13 +104,13 @@ function DrinkResultConfirmation() {
 
             {/* Left column: Drink image & name */}
             <div className="w-full md:w-1/2 flex flex-col items-center">
-              <h2 className="font-bold text-2xl sm:text-3xl mb-4">Your Drink</h2>
+              <h2 className="text-deepOrange font-bold text-2xl sm:text-3xl mb-4">Your Drink</h2>
               <img
                 src={imageSrc}
                 alt="Generated Drink"
                 className="w-32 sm:w-40 md:w-72 h-auto rotate-15 mt-2"
               />
-              <h2 className="text-2xl font-bold text-deepOrange mt-6 text-center">
+              <h2 className="text-2xl font-bold mt-6 text-center">
                 {drinkDetails.drink_name}
               </h2>
             </div>
@@ -118,17 +118,17 @@ function DrinkResultConfirmation() {
             {/* Right column: Description, Ingredients, Taste, Buttons */}
             <div className="w-full md:w-1/2 bg-zinc-900 rounded-2xl p-6 sm:p-8 text-center space-y-8">
               <div>
-                <p className="font-bold text-deepOrange text-lg sm:text-xl mb-1">Description:</p>
+                <span className="font-bold text-deepOrange text-lg sm:text-xl mb-1">Description</span>
                 <p className="text-base sm:text-lg text-gray-200">{drinkDetails.description}</p>
               </div>
 
               <div className="flex flex-col sm:flex-row justify-center gap-6 text-sm sm:text-base">
                 <div className="flex-1">
-                  <p className="font-bold text-deepOrange text-lg sm:text-xl mb-1">Ingredients:</p>
+                  <span className="font-bold text-deepOrange text-lg sm:text-xl mb-1">Ingredients</span>
                   <p className="text-gray-200">{drinkDetails.ingredients}</p>
                 </div>
                 <div className="flex-1">
-                  <p className="font-bold text-deepOrange text-lg sm:text-xl mb-1">Taste Notes:</p>
+                  <span className="font-bold text-deepOrange text-lg sm:text-xl mb-1">Taste Notes</span>
                   <p className="text-gray-200">{drinkDetails.taste_profile}</p>
                 </div>
               </div>
@@ -138,7 +138,7 @@ function DrinkResultConfirmation() {
                   <ResusableButton
                     disabled={rerolls <= 0}
                     onClick={handleReroll}
-                    text={`Reroll (${rerolls})`}
+                    text="Reroll"
                     color="green"
                     width={140}
                     height={40}
@@ -146,7 +146,7 @@ function DrinkResultConfirmation() {
                   <ResusableButton
                     disabled={refines <= 0}
                     onClick={handleRefine}
-                    text={`Refine (${refines})`}
+                    text="Refine"
                     color="green"
                     width={140}
                     height={40}
@@ -157,7 +157,7 @@ function DrinkResultConfirmation() {
                   onClick={handleOnClick}
                   text="Confirm"
                   color="pink"
-                  width={288}
+                  width={140}
                   height={40}
                 />
               </div>

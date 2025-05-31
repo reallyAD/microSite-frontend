@@ -11,8 +11,8 @@ export function DrinksProvider({ children }) {
         drinkBase: '',
         flavourProfile: [],
         label: '',
-        refines: 2,
-        rerolls: 2,
+        refines: 100,
+        rerolls: 100,
       }
 
     // Default state for drink image data

@@ -88,7 +88,7 @@ function DrinkResultConfirmation() {
     } 
 
     if (isLoading) {
-      return <LoadingPage message="Adding sugar, spice and everything nice" />
+      return <LoadingPage message="Adding sugar, spice and everything nice..." />
     }
 
     if (isRerolling) {

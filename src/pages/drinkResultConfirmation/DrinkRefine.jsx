@@ -38,8 +38,13 @@ function DrinkRefine() {
         drink_name: generatedDrink.drink_name,
         category: generatedDrink.category,  
         description: generatedDrink.description,
-        ingredients: generatedDrink.ingredients.split(',').map(ingredient => ingredient.trim()),
-        taste_profile: generatedDrink.taste_profile.split(',').map(taste => taste.trim()),
+        // Ensure ingredients and taste_profile are arrays, even if the source is a string
+        ingredients: typeof generatedDrink.ingredients === 'string' 
+            ? generatedDrink.ingredients.split(',').map(ingredient => ingredient.trim()) 
+            : (generatedDrink.ingredients || []),
+        taste_profile: typeof generatedDrink.taste_profile === 'string'
+            ? generatedDrink.taste_profile.split(',').map(taste => taste.trim())
+            : (generatedDrink.taste_profile || []),
         bottle_color: generatedDrink.bottle_color,
     } 
 
@@ -65,6 +70,7 @@ function DrinkRefine() {
 
         } catch (error) {
             console.error("Error refining drink:", error);
+            setIsLoading(false); // Ensure loading state is reset on error
         }
     }
 
@@ -77,86 +83,89 @@ function DrinkRefine() {
     return (
         <>
             <BackButton/>
-            <div className="bg-black text-white h-screen px-4 pt-24 pb-10">
-                <div className="w-full max-w-5xl justify-center mx-auto flex flex-col md:flex-row gap-y-10 md:gap-x-10 items-center mt-6 overflow-y-auto">
+            {/* Main page container - matches DrinkResultConfirmation */}
+            <div className="bg-black text-white h-screen px-4 pt-24 pb-10 flex flex-col items-center justify-center">
+                {/* Two-column layout container - matches DrinkResultConfirmation */}
+                <div className="w-full max-w-5xl flex flex-col md:flex-row justify-between gap-8 overflow-y-auto">
 
-                    {/* Left column */}
-                    <div className="w-full md:w-1/2 flex flex-col items-center text-center">
-                    <h2 className="font-bold text-2xl sm:text-3xl mb-2">Your Current Drink</h2>
-                    <img src={imageSrc} alt="Generated Drink" className="w-48 sm:w-72 h-auto mt-2 rotate-15" />
-                    <h3 className="text-2xl font-bold text-deepOrange mt-4">{drinkDetails.drink_name}</h3>
+                    {/* Left column: Drink image & name - matches DrinkResultConfirmation */}
+                    <div className="w-full md:w-1/2 flex flex-col items-center justify-center">
+                        <h2 className="text-deepOrange font-bold text-2xl sm:text-3xl mb-4">Your Current Drink</h2>
+                        <img src={imageSrc} alt="Generated Drink" className="w-32 sm:w-40 md:w-72 h-auto rotate-15 mt-2" />
+                        <h3 className="text-2xl font-bold mt-6 text-center">{drinkDetails.drink_name}</h3>
                     </div>
 
-                    {/* Right column: contained */}
-                    <div className="w-full h- md:w-1/2 bg-zinc-900 rounded-2xl p-6 sm:p-8 flex flex-col space-y-6">
-
-                    {/* Description */}
-                    <div className="text-center">
-                        <p className="font-bold text-deepOrange text-lg sm:text-xl mb-2">Description:</p>
-                        <p className="text-base sm:text-lg text-gray-200 leading-relaxed">{drinkDetails.description}</p>
-                    </div>
-
-                    {/* Ingredients + Taste Notes */}
-                    <div className="flex flex-col sm:flex-row gap-y-4 text-sm sm:text-base">
-                        <div className="flex-1">
-                        <p className="font-bold text-deepOrange text-lg sm:text-xl mb-1">Ingredients:</p>
-                        <p className="text-gray-200">{drinkDetails.ingredients.join(', ')}</p>
+                    {/* Right column: Details, Refinement Prompt, and Button - structure adapted from DrinkResultConfirmation */}
+                    <div className="w-full md:w-1/2 bg-zinc-900 rounded-2xl p-6 sm:p-8 text-center space-y-8">
+                        {/* Description - matches DrinkResultConfirmation */}
+                        <div>
+                            <span className="font-bold text-deepOrange text-lg sm:text-xl mb-1">Description</span>
+                            <p className="text-base sm:text-lg text-gray-200">{drinkDetails.description}</p>
                         </div>
-                        <div className="flex-1">
-                        <p className="font-bold text-deepOrange text-lg sm:text-xl mb-1">Taste Notes:</p>
-                        <p className="text-gray-200">{drinkDetails.taste_profile.join(', ')}</p>
+
+                        {/* Ingredients + Taste Notes - matches DrinkResultConfirmation */}
+                        <div className="flex flex-col sm:flex-row justify-center gap-6 text-sm sm:text-base">
+                            <div className="flex-1">
+                                <span className="font-bold text-deepOrange text-lg sm:text-xl mb-1">Ingredients</span>
+                                <p className="text-gray-200">{drinkDetails.ingredients.join(', ')}</p>
+                            </div>
+                            <div className="flex-1">
+                                <span className="font-bold text-deepOrange text-lg sm:text-xl mb-1">Taste Notes</span>
+                                <p className="text-gray-200">{drinkDetails.taste_profile.join(', ')}</p>
+                            </div>
                         </div>
-                    </div>
+                        
+                        {/* Refinement Prompt Section - Specific to DrinkRefine */}
+                        <div className="flex flex-col items-center w-full"> {/* Centering the refinement section */}
+                            <Typography variant="subtitle1" className="text-white mb-2 text-lg sm:text-xl text-left w-full" sx={{ maxWidth: '90%' }}> 
+                                How would you like to refine your drink?
+                            </Typography>
+                            <TextField
+                                multiline
+                                rows={3}
+                                value={refinePrompt}
+                                onChange={handleRefinePromptChange}
+                                placeholder="e.g., make it sweeter, add a hint of mint..."
+                                variant="outlined"
+                                fullWidth
+                                sx={{
+                                    maxWidth: '90%', // Limit width of text field
+                                    '& .MuiInputBase-input': { color: 'white' },
+                                    '& .MuiOutlinedInput-root': {
+                                        '& fieldset': {
+                                            borderColor: isOverWordLimit ? 'red' : 'rgba(255, 255, 255, 0.5)',
+                                        },
+                                        '&:hover fieldset': {
+                                            borderColor: isOverWordLimit ? 'red' : 'rgba(255, 255, 255, 0.7)',
+                                        },
+                                        '&.Mui-focused fieldset': {
+                                            borderColor: isOverWordLimit ? 'red' : '#FF640A', // Changed to deepOrange for consistency
+                                        },
+                                    },
+                                }}
+                            />
+                            <Typography
+                                variant="caption"
+                                className="mt-1 text-left w-full"
+                                sx={{
+                                    color: isOverWordLimit ? 'red' : 'gray',
+                                    fontWeight: isOverWordLimit ? 'bold' : 'normal',
+                                    maxWidth: '90%' 
+                                }}
+                            >
+                                {wordCount}/{MAX_WORDS} words {isOverWordLimit && ' - Please shorten your refinement'}
+                            </Typography>
+                        </div>
 
-                    {/* Refinement Prompt */}
-                    <div className="flex flex-col">
-                        <Typography variant="subtitle1" className="text-white mb-2">
-                        How would you like to refine your drink?
-                        </Typography>
-                        <TextField
-                        multiline
-                        rows={3}
-                        value={refinePrompt}
-                        onChange={handleRefinePromptChange}
-                        placeholder="Tell us how you'd like to modify your drink (e.g., more sweetness...)"
-                        variant="outlined"
-                        fullWidth
-                        sx={{
-                            '& .MuiInputBase-input': { color: 'white' },
-                            '& .MuiOutlinedInput-root': {
-                            '& fieldset': {
-                                borderColor: isOverWordLimit ? 'red' : 'rgba(255, 255, 255, 0.5)',
-                            },
-                            '&:hover fieldset': {
-                                borderColor: isOverWordLimit ? 'red' : 'rgba(255, 255, 255, 0.7)',
-                            },
-                            '&.Mui-focused fieldset': {
-                                borderColor: isOverWordLimit ? 'red' : '#FF8C42',
-                            },
-                            },
-                        }}
-                        />
-                        <Typography
-                        variant="caption"
-                        className="mt-1"
-                        sx={{
-                            color: isOverWordLimit ? 'red' : 'gray',
-                            fontWeight: isOverWordLimit ? 'bold' : 'normal',
-                        }}
-                        >
-                        {wordCount}/{MAX_WORDS} words {isOverWordLimit && ' - Please shorten your refinement'}
-                        </Typography>
-                    </div>
-
-                    {/* Refine Button */}
-                        <div className="mt-2 flex justify-center">
+                        {/* Refine Button - Centered, similar to Confirm button in DrinkResultConfirmation */}
+                        <div className="flex flex-col items-center">
                             <ResusableButton
-                            onClick={handleRefineDrink}
-                            text="Refine"
-                            color="green"
-                            width={288}
-                            height={40}
-                            disabled={wordCount === 0 || isOverWordLimit}
+                                onClick={handleRefineDrink}
+                                text="Refine Drink"
+                                color="pink"
+                                width={160} // Adjusted width
+                                height={40}
+                                disabled={wordCount === 0 || isOverWordLimit || isLoading}
                             />
                         </div>
                     </div>

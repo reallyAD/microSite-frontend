@@ -122,11 +122,11 @@ function DrinkResult() {
                             ) : (
                                 <>
                                     <h2 className="text-3xl font-bold text-center mb-4 leading-tight">
-                                        Let’s make this drink a reality!
+                                        Want to make this drink a reality? 
                                     </h2>
                                     <div className="items-center flex flex-col w-full max-w-md px-2">
                                         <p className="text-sm text-zinc-300 mb-6 text-center">
-                                            Insert your email and we’ll reach out to you within 1–2 working days.
+                                            Leave us your email and we’ll reach out in just 1 working day.
                                         </p>
                                         <TextField
                                             label="Email"
@@ -136,29 +136,28 @@ function DrinkResult() {
                                                 width: '100%',
                                                 maxWidth: '100%',
                                                 mb: 2,
-                                                backgroundColor: 'lightgray',
-                                                borderRadius: '4px',
+                                                backgroundColor: '#414146',
+                                                borderRadius: 1,
                                                 '& .MuiOutlinedInput-root': {
                                                     '& fieldset': {
-                                                        borderColor: isFilled ? '#FF640A' : 'lightgray',
+                                                        borderColor: '#FF640A',
                                                         borderWidth: isFilled ? '2px' : '1px',
                                                     },
                                                     '&:hover fieldset': {
-                                                        borderColor: isFilled ? '#FF640A' : 'lightgray',
+                                                        borderColor: '#FF640A',
                                                     },
                                                     '&.Mui-focused fieldset': {
                                                         borderColor: '#FF640A',
                                                     },
-                                                    // Ensure input text is visible
-                                                    input: {
-                                                        color: 'black',
+                                                    '& input': {
+                                                        color: 'white',
                                                     }
                                                 },
                                                 '& .MuiInputLabel-root': {
-                                                    color: isFilled ? '#FF640A' : 'black',
+                                                    color: 'white',
                                                 },
                                                 '& .MuiInputLabel-root.Mui-focused': {
-                                                    color: '#FF640A',
+                                                    color: 'white',
                                                 },
                                             }}
                                             id="email"

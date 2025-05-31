@@ -67,7 +67,7 @@ function PersonalDetails() {
                                 color:'white', 
                             },
                             '& .MuiInputLabel-root.Mui-focused': {
-                                color:'#FF640A', 
+                                color:'white', 
                             },
                         }}
                         onChange={handleOnChange}

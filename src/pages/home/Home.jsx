@@ -39,7 +39,7 @@ function Home() {
                 </Button>
               </div>
 
-              <div className="w-full md:w-1/2 flex justify-center items-center">
+              <div className="w-full md:w-1/2 flex justify-center items-center sm:pt-0 pt-12">
                 <video
                   autoPlay
                   loop

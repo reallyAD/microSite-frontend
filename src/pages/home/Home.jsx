@@ -51,6 +51,7 @@ function Home() {
                 </video>
               </div>
           </div>
+          <footer className="pt-8 text-xs text-center sm:text-sm">You're exploring an early version of our Drink Creator — things are still in the works</footer>
         </div>
 
      </>

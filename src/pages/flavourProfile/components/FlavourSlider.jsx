@@ -2,20 +2,19 @@ import React from 'react';
 import Slider from "@mui/material/Slider";
 import Box from "@mui/material/Box";
 
-function FlavourSlider({ title, value, minLabel, maxLabel, marks, onChangeValue, flavourIntensity }) {
+function FlavourSlider({ title, value, marks, onChangeValue, flavourIntensity, showTooltips }) {
   return (
     <div className="flex flex-col items-center w-full">
       <h3 className="font-satoshiBold text-lg sm:text-xl mb-4">{title}</h3>
       <div className="flex w-full items-center justify-between gap-4">
-        <p className="w-16 text-left text-sm">{minLabel}</p>
-        <Box sx={{ width: '100%' }} className="flex-grow">
+        <Box sx={{ width: '75%' }} className="mx-auto">
           <Slider
             onChange={onChangeValue}
             value={value}
             min={0}
             max={100}
             step={25}
-            valueLabelDisplay="auto"
+            valueLabelDisplay={showTooltips ? 'on' : 'auto'}
             valueLabelFormat={(v) => flavourIntensity[v] || v}
             sx={{
               color: '#FF640A',
@@ -35,7 +34,6 @@ function FlavourSlider({ title, value, minLabel, maxLabel, marks, onChangeValue,
             }}
           />
         </Box>
-        <p className="w-16 text-right text-sm">{maxLabel}</p>
       </div>
     </div>
   );

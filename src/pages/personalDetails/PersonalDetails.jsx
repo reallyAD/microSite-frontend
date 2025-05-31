@@ -35,13 +35,14 @@ function PersonalDetails() {
         <div className="bg-black text-white min-h-screen w-full flex flex-col justify-center items-center px-4 py-10">
             <div className="w-full max-w-md">
                 <div className="flex flex-col items-center text-center">
-                    <h1 className="text-3xl font-bold mb-10">What is your name?</h1>
-                    <p className="mb-2 text-lg">Every drink starts with a name</p>
+                    <h1 className="text-3xl font-bold mb-6">What is your name?</h1>
+                    <p className="mb-4 text-lg">Every master brewer has a name</p>
                 </div>
                 <div className="flex flex-row items-center justify-center gap-2 mt-4">
                     <TextField
                         sx={{
-                            backgroundColor: 'lightgray',
+                            backgroundColor: '#414146',
+                            color: 'white',
                             borderRadius: 1,
                             display: 'flex',
                             justifyContent: 'center',
@@ -49,21 +50,24 @@ function PersonalDetails() {
                             marginRight: '4px',
                             '& .MuiOutlinedInput-root': {
                                 '& fieldset': {
-                                    borderColor: isFilled ? '#FF640A' : 'lightgray', 
+                                    borderColor: '#FF640A', 
                                     borderWidth: isFilled ? '2px' : '1px',
                                 },
                                 '&:hover fieldset': {
-                                    borderColor: isFilled ? '#FF640A' : 'lightgray', 
+                                    borderColor:'#FF640A', 
                                 },
                                 '&.Mui-focused fieldset': {
-                                    borderColor: isFilled ? '#FF640A' : 'lightgray',
+                                    borderColor:'#FF640A',
                                 },
+                                '& input': {
+                                    color: 'white',
+                                }
                             },
                             '& .MuiInputLabel-root': {
-                                color: isFilled ? '#FF640A' : 'black', 
+                                color:'white', 
                             },
                             '& .MuiInputLabel-root.Mui-focused': {
-                                color: isFilled ? '#FF640A' : 'inherit', 
+                                color:'#FF640A', 
                             },
                         }}
                         onChange={handleOnChange}

@@ -97,12 +97,27 @@ function DrinkResult() {
                     </div>
 
                     {/* Right Panel */}
-                    <div className="w-full md:w-1/2 flex flex-col justify-center items-center bg-zinc-900 p-6 sm:p-8 md:p-10 rounded-3xl shadow-lg">
+                    <div className="w-full md:w-3/4 flex flex-col justify-center items-center bg-zinc-900 p-6 sm:p-8 md:p-10 rounded-3xl shadow-lg">
                         <div className="flex flex-col items-center w-full justify-center gap-y-6 md:gap-y-8">
                             {submissionStatus === 'success' ? (
-                                <div className="text-center text-green-400">
-                                    <h2 className="text-xl font-bold mb-2">Thanks!</h2>
-                                    <p>We'll be in touch!</p>
+                                <div className="text-left flex flex-col gap-y-10">
+                                    <div className="flex flex-col gap-y-2 ">
+                                        <span className="text-white text-3xl font-geist">You've just tried</span>
+                                        <span className="text-4xl font-bold font-geist"> The <span className="font-bold text-deepOrange text-4xl">RAD.</span> Drink Experience </span>
+                                    </div>
+                                    <p>
+                                        We're still fine-tuning the magic
+                                        so things might shift, change or get better fast.
+                                    </p>
+                                    <p>
+                                        Got a minute?{' '} 
+                                        <a href="https://4nnh5aaw1dj.typeform.com/to/Vrm3ENiC?typeform-source=www.google.com" 
+                                            target="_blank" 
+                                            rel="noopener noreferrer"
+                                        >
+                                            <span className="text-green">Tell us what you think!</span>
+                                        </a>
+                                    </p>
                                 </div>
                             ) : (
                                 <>

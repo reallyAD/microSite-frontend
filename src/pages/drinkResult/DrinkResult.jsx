@@ -7,6 +7,7 @@ import TextField from '@mui/material/TextField';
 import drinkService from '../../api/drinkService';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 import { IconButton } from '@mui/material';
+import ResusableButton from '../../components/ReusableButton';
 
 
 // Dynamically import bottle images
@@ -129,18 +130,14 @@ function DrinkResult() {
                                         </a>
                                     </p>
                                     <div className="flex flex-row justify-center">
-                                        <IconButton
+                                        <ResusableButton
+                                            text="Go Again"
                                             onClick={handleGoHome}
-                                            size="large"
-                                            sx={{ 
-                                                color: '#FFB4F0',
-                                                '&:hover': {
-                                                    backgroundColor: 'rgba(255, 180, 240, 0.1)',
-                                                },
-                                            }}
-                                        >
-                                            <RestartAltIcon />
-                                        </IconButton>
+                                            color="green"
+                                            width={100}
+                                            height={40}
+
+                                        />
                                     </div>
                                 </div>
                             ) : (

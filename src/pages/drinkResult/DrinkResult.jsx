@@ -147,7 +147,7 @@ function DrinkResult() {
                                     </h2>
                                     <div className="items-center flex flex-col w-full max-w-md px-2">
                                         <p className="text-sm text-zinc-300 mb-6 text-center">
-                                            Leave us your email and we’ll reach out in just 1 working day.
+                                            Leave us your email and we’ll reach out in just 2 working days.
                                         </p>
                                         <TextField
                                             label="Email"
